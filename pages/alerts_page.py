@@ -7,8 +7,7 @@ import random
 import string
 
 class AlertsPage(BasePage):
-    GO_TO_ALERTS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-1']")
-    ALERTS_SECTION = (By.ID, "javascriptAlertsWrapper")
+    ALERTS_SECTION_CHECK = (By.ID, "javascriptAlertsWrapper")
     ALERT_BUTTON = (By.ID, "alertButton")
     CONFIRM_BUTTON = (By.ID, "confirmButton")
     PROMPT_BUTTON = (By.ID, "promtButton")
@@ -23,7 +22,7 @@ class AlertsPage(BasePage):
         self.click(self.GO_TO_ALERTS_SECTION)
     
     def is_opened_alerts_section(self):
-        return self.is_element_displayed(self.ALERTS_SECTION)
+        return self.is_element_displayed(self.ALERTS_SECTION_CHECK)
     
     def is_alert_presented(self):
         try:
