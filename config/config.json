@@ -1,0 +1,10 @@
+{
+  "main_url": "https://demoqa.com",
+  "chrome_options": {
+    "headless": false,
+    "incognito": true,
+    "lang": "en",
+    "window_size": "1920,1080",
+    "page_load_strategy": "eager"
+  }
+}
