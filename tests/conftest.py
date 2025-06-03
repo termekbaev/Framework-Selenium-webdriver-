@@ -24,5 +24,9 @@ def setup_logging():
         level=logging.INFO,
         format='%(asctime)s [%(levelname)s] %(message)s',
         datefmt='%H:%M:%S',
+        handlers=[
+            logging.FileHandler('test.log', 'w'),
+            logging.StreamHandler()
+        ],
         force=True
     )
