@@ -22,3 +22,6 @@ class BasePage:
             return True
         except:
             return False
+        
+    def get_element_text(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator)).text
