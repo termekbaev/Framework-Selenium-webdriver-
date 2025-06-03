@@ -15,11 +15,8 @@ class AlertsPage(BasePage):
     PROMPT_RESULT = (By.ID, "promptResult")
 
 
-    def generate_random_text(self, length=8):
+    def generate_random_text(self, length=20):
         return ''.join(random.choice(string.ascii_letters) for _ in range(length))
-
-    def open_alerts_section(self):
-        self.click(self.GO_TO_ALERTS_SECTION)
     
     def is_opened_alerts_section(self):
         return self.is_element_displayed(self.ALERTS_SECTION_CHECK)

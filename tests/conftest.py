@@ -20,12 +20,15 @@ def alerts_test_data():
 
 @pytest.fixture(autouse=True)
 def setup_logging():
+    with open('test.log', 'w') as f:
+        f.write("=== НАЧАЛО ТЕСТИРОВАНИЯ ===\n")
+
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s [%(levelname)s] %(message)s',
         datefmt='%H:%M:%S',
         handlers=[
-            logging.FileHandler('test.log', 'w'),
+            logging.FileHandler('test.log', 'a'),
             logging.StreamHandler()
         ],
         force=True

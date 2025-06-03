@@ -8,5 +8,5 @@ class MainPage(BasePage):
     def is_opened_main_page(self):
         return self.is_element_displayed(self.UNIQUE_ELEMENT)
 
-    def open_alerts_page(self):
-        self.find_element(self.ALERTS_FRAME_AND_WINDOWS_CARD).click()
+    def open_alerts_frame_and_windows_page(self):
+        self.click(self.ALERTS_FRAME_AND_WINDOWS_CARD)
