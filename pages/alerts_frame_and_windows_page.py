@@ -1,4 +1,7 @@
 from pages.base_page import BasePage
+from pages.alerts_page import AlertsPage
+from pages.nested_frames_page import NestedFramesPage
+from pages.frames_page import FramesPage
 from selenium.webdriver.common.by import By
 
 class AlertsFrameAndWindowsPage(BasePage):
@@ -8,9 +11,12 @@ class AlertsFrameAndWindowsPage(BasePage):
 
     def open_alerts_section(self):
         self.click(self.ALERTS_SECTION)
+        return AlertsPage(self.driver)
 
     def open_nested_frames_section(self):
         self.click(self.NESTED_FRAMES_SECTION)
+        return NestedFramesPage(self.driver)
 
     def open_frames_section(self):
         self.click(self.FRAMES_SECTION)
+        return FramesPage(self.driver)
