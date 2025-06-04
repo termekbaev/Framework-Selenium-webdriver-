@@ -1,8 +1,18 @@
 {
   "main_url": "https://demoqa.com",
+  "browser": "firefox",
   "chrome_options": {
     "headless": false,
     "incognito": true,
+    "disable_extensions": true,
+    "lang": "en",
+    "window_size": "1920,1080",
+    "page_load_strategy": "eager"
+  },
+  "firefox_options": {
+    "headless": false,
+    "private": true,
+    "disable_extensions": true,
     "lang": "en",
     "window_size": "1920,1080",
     "page_load_strategy": "eager"

@@ -1,17 +1,17 @@
 from typing import List
 
-class ChromeOptionsConfig:
+class FirefoxOptionsConfig:
     def __init__(
         self,
         headless: bool = False,
-        incognito: bool = True,
+        private: bool = True,
         disable_extensions: bool = True,
         lang: str = "en",
         window_size: str = "1920,1080",
         page_load_strategy: str = "eager"
     ):
         self.headless = headless
-        self.incognito = incognito
+        self.private = private
         self.disable_extensions = disable_extensions
         self.lang = lang
         self.window_size = window_size

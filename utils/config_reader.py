@@ -9,7 +9,9 @@ class ConfigReader:
             config_data = json.load(f)
             self.config = AppConfig(
                 main_url=config_data["main_url"],
-                chrome_options=config_data["chrome_options"]
+                browser=config_data.get("browser", "chrome"),
+                chrome_options=config_data["chrome_options"],
+                firefox_options=config_data["firefox_options"]
             )
 
     @property
