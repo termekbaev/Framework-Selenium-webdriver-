@@ -1,12 +1,9 @@
 from pages.main_page import MainPage
-from pages.alerts_frame_and_windows_page import AlertsFrameAndWindowsPage
-from pages.frames_page import FramesPage
-from pages.nested_frames_page import NestedFramesPage
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_alerts(driver_manager, config):
+def test_demoqa_alerts(driver_manager, config):
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     
@@ -14,10 +11,8 @@ def test_alerts(driver_manager, config):
     assert main_page.is_opened_main_page(), "Main page not opened"
     logger.info("Main page opened")
 
-    main_page.open_alerts_frame_and_windows_page()
-    alerts_frame_and_windows_page = AlertsFrameAndWindowsPage(driver)
-    alerts_frame_and_windows_page.open_nested_frames_section()
-    nested_frames_page = NestedFramesPage(driver)    
+    alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()
+    nested_frames_page = alerts_frame_and_windows_page.open_nested_frames_section()   
     assert nested_frames_page.is_opened_nested_frames_page(), "Nested frames page not opened"
     logger.info("Nested Frames page opened")
 
@@ -29,8 +24,7 @@ def test_alerts(driver_manager, config):
     logger.info("Texts 'Parent frame' and 'Child Iframe' are on the page ")
     nested_frames_page.switch_to_default_content()
 
-    frames_page = FramesPage(driver)
-    alerts_frame_and_windows_page.open_frames_section()
+    frames_page = alerts_frame_and_windows_page.open_frames_section()
     assert frames_page.is_opened_frames_page(), "Frames page not opened"
     logger.info("Frames page opened")
 

@@ -5,7 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def test_alerts(driver_manager, config):
+def test_demoqa_alerts(driver_manager, config):
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     
@@ -13,10 +13,8 @@ def test_alerts(driver_manager, config):
     assert main_page.is_opened_main_page(), "Main page not opened"
     logger.info("Main page opened")
     
-    main_page.open_alerts_frame_and_windows_page()
-    alerts_frame_and_windows_page = AlertsFrameAndWindowsPage(driver)
-    alerts_frame_and_windows_page.open_alerts_section()
-    alerts_page = AlertsPage(driver)
+    alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()
+    alerts_page = alerts_frame_and_windows_page.open_alerts_section()
     assert alerts_page.is_opened_alerts_section(), "Alerts section not opened"
     logger.info("Alerts section is on the screen")
 
