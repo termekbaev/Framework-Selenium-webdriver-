@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "first_name": "Jon",
+      "last_name": "Snow",
+      "age": "30",
+      "email": "knownothing@gmail.com",
+      "salary": "3000",
+      "department": "alpha"
+    },
+    {
+      "first_name": "Buttercup",
+      "last_name": "Cumbersnatch",
+      "age": "41",
+      "email": "BudapestCandygram@mail.com",
+      "salary": "2000",
+      "department": "beta"
+    }
+  ]
+}
