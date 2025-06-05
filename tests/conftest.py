@@ -18,6 +18,10 @@ def config():
     return ConfigReader()
 
 @pytest.fixture
+def web_tables_test_data():
+    return TestDataReader("config/test_web_tables_data.json")
+
+@pytest.fixture
 def alerts_test_data():
     return TestDataReader("config/test_alerts_data.json")
 
