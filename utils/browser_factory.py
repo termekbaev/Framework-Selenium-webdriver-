@@ -41,7 +41,8 @@ class BrowserFactory:
         options.page_load_strategy = cfg.page_load_strategy
 
         driver = webdriver.Chrome(options=options)
-        driver.maximize_window()
+        if not cfg.headless:
+            driver.maximize_window()
         return driver
 
     def _create_firefox_driver(self) -> webdriver.Firefox:
