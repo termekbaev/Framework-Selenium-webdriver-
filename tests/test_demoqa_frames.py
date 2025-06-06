@@ -9,26 +9,17 @@ def test_demoqa_alerts(driver_manager, config):
     
     main_page = MainPage(driver)
     assert main_page.is_opened_main_page(), "Main page not opened"
-    logger.info("Main page opened")
 
     alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()
     nested_frames_page = alerts_frame_and_windows_page.open_nested_frames_section()   
     assert nested_frames_page.is_opened_nested_frames_page(), "Nested frames page not opened"
-    logger.info("Nested Frames page opened")
 
-    parent_text = nested_frames_page.switch_to_parent_frame_and_return_text()
-    assert "Parent frame" in parent_text, "'Parent frame' text not found"
-
-    child_text = nested_frames_page.switch_to_child_frame_and_return_text()
-    assert "Child Iframe" in child_text, "'Child Iframe' text not found"
-    logger.info("Texts 'Parent frame' and 'Child Iframe' are on the page ")
-    nested_frames_page.switch_to_default_content()
+    outer_frame_text, inner_frame_text = nested_frames_page.get_text_in_frames()
+    assert "Parent frame" == outer_frame_text and "Child Iframe" == inner_frame_text, "Some of frame texts not found"
 
     frames_page = alerts_frame_and_windows_page.open_frames_section()
     assert frames_page.is_opened_frames_page(), "Frames page not opened"
-    logger.info("Frames page opened")
 
-    top_frame_text = frames_page.get_top_frame_text()
-    bottom_frame_text = frames_page.get_bottom_frame_text()
+    top_frame_text = frames_page.switch_and_get_top_frame_text()
+    bottom_frame_text = frames_page.switch_and_get_bottom_frame_text()
     assert top_frame_text == bottom_frame_text, "Frame1 text != Frame2 text"
-    logger.info("Top frame text == bottom frame text")
