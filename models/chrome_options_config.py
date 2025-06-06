@@ -1,5 +1,3 @@
-from typing import List
-
 class ChromeOptionsConfig:
     def __init__(
         self,

@@ -14,7 +14,6 @@ class AlertsPage(BasePage):
     CONFIRM_RESULT = (By.ID, "confirmResult")
     PROMPT_RESULT = (By.ID, "promptResult")
 
-
     def generate_random_text(self, length=20):
         return ''.join(random.choice(string.ascii_letters) for _ in range(length))
     

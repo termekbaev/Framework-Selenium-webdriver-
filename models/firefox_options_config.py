@@ -1,5 +1,3 @@
-from typing import List
-
 class FirefoxOptionsConfig:
     def __init__(
         self,

@@ -5,9 +5,9 @@ from selenium.webdriver.remote.webdriver import WebDriver
 class BasePage:
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 5)
+        self.wait = WebDriverWait(driver, timeout=5)
 
-    def find_element(self, locator, time=5, condition=EC.presence_of_element_located):
+    def find_element(self, locator, condition=EC.presence_of_element_located):
         return self.wait.until(condition(locator), 
                                 f"Cant find element by locator '{locator}'"
                                 )
@@ -15,7 +15,7 @@ class BasePage:
     def click(self, locator):
         self.driver.find_element(*locator).click()
 
-    def is_element_displayed(self, locator, timeout=5):
+    def is_element_displayed(self, locator):
         try:
             self.wait.until(EC.visibility_of_element_located(locator), 
                             f"Cant find element by locator '{locator}'"

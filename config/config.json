@@ -1,6 +1,6 @@
 {
   "main_url": "https://demoqa.com",
-  "browser": "firefox",
+  "browser": "chrome",
   "chrome_options": {
     "headless": false,
     "incognito": true,

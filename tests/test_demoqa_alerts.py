@@ -1,6 +1,4 @@
 from pages.main_page import MainPage
-from pages.alerts_frame_and_windows_page import AlertsFrameAndWindowsPage
-from pages.alerts_page import AlertsPage
 import logging
 
 logger = logging.getLogger(__name__)
