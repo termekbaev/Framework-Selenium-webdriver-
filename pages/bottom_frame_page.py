@@ -5,4 +5,4 @@ class BottomFramePage(BasePage):
     BOTTOM_FRAME_TEXT = (By.ID, "sampleHeading")
 
     def get_bottom_frame_text(self):
-        return self.find_element(self.BOTTOM_FRAME_TEXT).text
+        return self.get_element_text(self.BOTTOM_FRAME_TEXT)

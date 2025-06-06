@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def test_demoqa_alerts(driver_manager, config):
+def test_frames(driver_manager, config):
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     

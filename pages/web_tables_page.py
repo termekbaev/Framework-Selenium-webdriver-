@@ -61,4 +61,4 @@ class WebTablesPage(BasePage):
                 cells[5].text == user_data['department']):
                     row.find_element(*self.DELETE_BUTTON).click()
                     return
-        raise ValueError(f"User with first name {user_data['first_name']} not in table")
+        raise ValueError(f"User [{user_data}] not in table")

@@ -31,7 +31,7 @@ class AlertsPage(BasePage):
             alert = self.driver.switch_to.alert
             alert_text = alert.text
             alert.accept() 
-            return alert_text, self.find_element(self.CONFIRM_RESULT).text
+            return alert_text, self.get_element_text(self.CONFIRM_RESULT)
         else:
             raise TimeoutException("Alert not presented")
 
@@ -42,6 +42,6 @@ class AlertsPage(BasePage):
             alert_text = alert.text
             alert.send_keys(random_text)
             alert.accept()
-            return random_text, alert_text, self.find_element(self.PROMPT_RESULT).text
+            return random_text, alert_text, self.get_element_text(self.PROMPT_RESULT)
         else:
             raise TimeoutException("Alert not presented")

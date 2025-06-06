@@ -8,7 +8,7 @@ class OuterFramePage(BasePage):
     INNER_FRAME = (By.TAG_NAME, "iframe")
 
     def get_outer_frame_text(self):
-        return self.find_element(self.OUTER_FRAME_BODY_TAG_WITH_TEXT).text
+        return self.get_element_text(self.OUTER_FRAME_BODY_TAG_WITH_TEXT)
     
     def switch_to_inner_frame_and_get_text(self):
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(self.INNER_FRAME))

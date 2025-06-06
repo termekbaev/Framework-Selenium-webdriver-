@@ -11,7 +11,7 @@ class BrowserWindowsPage(BasePage):
     ELEMENTS_TAB_FOR_WAITING_COLLAPSE = (By.XPATH, "//*[contains(@class, 'element-list')]")
     LINKS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-5']")
 
-    def click_new_tab_button(self):
+    def click_new_tab_button_that_open_sample_page(self):
         self.click(self.NEW_TAB_BUTTON)
         return SamplePage(self.driver)
     

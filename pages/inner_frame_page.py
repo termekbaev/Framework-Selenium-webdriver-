@@ -5,4 +5,4 @@ class InnerFramePage(BasePage):
     INNER_FRAME_P_TAG_WITH_TEXT = (By.TAG_NAME, "p")
 
     def get_inner_frame_text(self):
-        return self.find_element(self.INNER_FRAME_P_TAG_WITH_TEXT).text
+        return self.get_element_text(self.INNER_FRAME_P_TAG_WITH_TEXT)
