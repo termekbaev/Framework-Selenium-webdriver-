@@ -33,10 +33,10 @@ def test_web_tables(driver_manager, config, user_data):
     assert not web_tables_page.is_registration_form_displayed(), "Registration form still on display"
     assert web_tables_page.get_table_row_count() == initial_row_count + 1, "New row not added"
     
-    assert web_tables_page.is_user_in_table(user_data), "There is no user data in table"
-    logger.info("It's OK! User data in table")
-    
+    users_from_table = web_tables_page.get_users_from_table()
+    assert user_data in users_from_table, "There is no user data in tables"
+
     web_tables_page.delete_user(user_data)
     assert web_tables_page.get_table_row_count() == initial_row_count, "Initial row count != row count after delete"
-    assert not web_tables_page.is_user_in_table(user_data), "User still in table"
-    logger.info(f"User {user_data['first_name']} deleted from table")
+    users = web_tables_page.get_users_from_table()
+    assert user_data not in users, "User still in table" 
