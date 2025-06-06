@@ -20,3 +20,9 @@ pytest tests\test_demoqa_tables.py -v -s
 ```bash
 pytest tests\test_demoqa_handles.py -v -s
 ```
+
+## Настройки
+Выбрать браузер для запуска а также изменить конфигурацию запуска браузера можно в файле
+```bash
+config\config.json
+```
