@@ -6,6 +6,7 @@ from pages.browser_windows_page import BrowserWindowsPage
 from selenium.webdriver.common.by import By
 
 class AlertsFrameAndWindowsPage(BasePage):
+    UNIQUE_ELEMENT = (By.XPATH, "//*[@fill-rule='evenodd']//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
     ALERTS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-1']")
     NESTED_FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3']")
     FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2']")

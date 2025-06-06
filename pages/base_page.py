@@ -24,5 +24,16 @@ class BasePage:
         except:
             return False
         
+    def is_opened(self):
+        return self.is_element_displayed(self.UNIQUE_ELEMENT)
+    
     def get_element_text(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator)).text
+    
+    def is_alert_presented(self):
+        try:
+            WebDriverWait(self.driver, 1).until(EC.alert_is_present())
+            return True
+        except:
+            return False
+    

@@ -4,11 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class NestedFramesPage(BasePage):
-    NESTED_FRAMES_PAGE_CHECK = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
     OUTER_FRAME = (By.ID, "frame1")
-
-    def is_opened_nested_frames_page(self):
-        return self.is_element_displayed(self.NESTED_FRAMES_PAGE_CHECK)
 
     def get_text_in_frames(self):
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(self.OUTER_FRAME))

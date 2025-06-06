@@ -5,12 +5,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class FramesPage(BasePage):
-    FRAMES_PAGE_CHECK = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2' and contains(@class, 'active')]")
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2' and contains(@class, 'active')]")
     FRAME_TOP = (By.ID, "frame1")
     FRAME_BOTTOM = (By.ID, "frame2")
-
-    def is_opened_frames_page(self):
-        return self.is_element_displayed(self.FRAMES_PAGE_CHECK)
     
     def switch_and_get_top_frame_text(self):
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(self.FRAME_TOP))

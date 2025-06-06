@@ -14,14 +14,13 @@ def test_web_tables(driver_manager, config, user_data):
     driver.get(config.app_config.main_url)
     
     main_page = MainPage(driver)
-    assert main_page.is_opened_main_page(), "Main page not opened"
-    logger.info(f"Testing user: {user_data['first_name']}")
-    logger.info("Main page opened")
+    assert main_page.is_opened(), "Main page not opened"
+    logger.info(f"Testing user: {user_data['first_name']}, {user_data['last_name']}")
     
     elements_page = main_page.open_elements_page()
+    assert elements_page.is_opened(), "Elements page not opened"
     web_tables_page = elements_page.open_web_tables_section()
-    assert web_tables_page.is_opened_web_tables_section(), "Web Tables section not opened"
-    logger.info("Web Tables section opened")
+    assert web_tables_page.is_opened(), "Web Tables section not opened"
     
     initial_row_count = web_tables_page.get_table_row_count()
     

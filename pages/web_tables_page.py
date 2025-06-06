@@ -2,7 +2,7 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 class WebTablesPage(BasePage):
-    WEB_TABLES_SECTION_CHECK = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
     ADD_BUTTON = (By.ID, "addNewRecordButton")
     REGISTRATION_FORM = (By.CLASS_NAME, "modal-content")
     FIRST_NAME_INPUT = (By.ID, "firstName")
@@ -14,9 +14,6 @@ class WebTablesPage(BasePage):
     SUBMIT_BUTTON = (By.ID, "submit")
     TABLE_ROWS = (By.XPATH, "//*[@role='rowgroup']/*[not(contains(@class, '-padRow'))]")
     DELETE_BUTTON = (By.ID, "delete-record-4")
-
-    def is_opened_web_tables_section(self):
-        return self.is_element_displayed(self.WEB_TABLES_SECTION_CHECK)
     
     def click_add_button(self):
         self.click(self.ADD_BUTTON)
