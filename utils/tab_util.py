@@ -1,10 +1,12 @@
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.remote.webdriver import WebDriver
 from typing import List
+import logging
 
 class TabUtil:
     def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
 
     def get_current_window_handle(self) -> str:
         return self.driver.current_window_handle
@@ -13,7 +15,12 @@ class TabUtil:
         return self.driver.window_handles
 
     def switch_to_tab(self, window_handle: str) -> None:
-        self.driver.switch_to.window(window_handle)
+        self.logger.debug(f"Switching to tab: {window_handle}")
+        try:
+            self.driver.switch_to.window(window_handle)
+        except NoSuchWindowException:
+            self.logger.error(f"Tab not found: {window_handle}")
+            raise
 
     def switch_to_new_tab(self, close_old_tab: bool = False) -> str:
         old_tab = self.driver.current_window_handle
@@ -27,6 +34,7 @@ class TabUtil:
         return new_tab
 
     def close_current_tab(self) -> None:
+        self.logger.info(f"Tab closed {self.driver.current_window_handle}")
         self.driver.close()
 
     def is_tab_open(self, window_handle: str) -> bool:
