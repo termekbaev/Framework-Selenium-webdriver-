@@ -1,31 +1,13 @@
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions as EC
 
 class BasePage:
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout=5)
-
-    def find_element(self, locator, condition=EC.presence_of_element_located):
-        return self.wait.until(condition(locator), 
-                                f"Cant find element by locator '{locator}'"
-                                )
-
-    def click(self, locator):
-        self.driver.find_element(*locator).click()
-
-    def is_element_displayed(self, locator):
-        try:
-            self.wait.until(EC.visibility_of_element_located(locator), 
-                            f"Cant find element by locator '{locator}'"
-                            )
-            return True
-        except:
-            return False
         
-    def is_opened(self):
-        return self.is_element_displayed(self.UNIQUE_ELEMENT)
-    
-    def get_element_text(self, locator):
-        return self.wait.until(EC.visibility_of_element_located(locator)).text
+    def is_opened(self) -> bool:
+        return self.wait.until(EC.visibility_of_element_located(self.UNIQUE_ELEMENT), 
+                                f"Cant find element by locator '{self.UNIQUE_ELEMENT}'"
+                                ).is_displayed()
