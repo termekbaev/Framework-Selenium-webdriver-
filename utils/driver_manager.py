@@ -1,17 +1,10 @@
+from selenium.webdriver.remote.webdriver import WebDriver
 from utils.config_reader import ConfigReader
 from utils.browser_factory import BrowserFactory
-from selenium.webdriver.remote.webdriver import WebDriver
-
-class SingletonMeta(type):
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super().__call__(*args, **kwargs)
-        return cls._instances[cls]
+from utils.singleton_meta import SingletonMeta
 
 class DriverManager(metaclass=SingletonMeta):
-    def __init__(self, config: ConfigReader):
+    def __init__(self, config: ConfigReader) -> None:
         self._config = config
         self._driver = None
 
