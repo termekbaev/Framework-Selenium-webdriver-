@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from pages.inner_frame_page import InnerFramePage
-from selenium.webdriver.support import expected_conditions as EC
+from utils.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
 
 class OuterFramePage(BasePage):
@@ -11,6 +11,8 @@ class OuterFramePage(BasePage):
         return self.get_element_text(self.OUTER_FRAME_BODY_TAG_WITH_TEXT)
     
     def switch_to_inner_frame_and_get_text(self):
-        self.wait.until(EC.frame_to_be_available_and_switch_to_it(self.INNER_FRAME))
+        frame_util = FrameUtil(self.driver)
+        frame_util.switch_to_frame(self.INNER_FRAME)
         inner_page = InnerFramePage(self.driver)
-        return inner_page.get_inner_frame_text()
+        text = inner_page.get_inner_frame_text()
+        return text
