@@ -3,7 +3,9 @@ from pages.alerts_page import AlertsPage
 from pages.nested_frames_page import NestedFramesPage
 from pages.frames_page import FramesPage
 from pages.browser_windows_page import BrowserWindowsPage
+from elements.button import Button
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 
 class AlertsFrameAndWindowsPage(BasePage):
     UNIQUE_ELEMENT = (By.XPATH, "//*[@fill-rule='evenodd']//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
@@ -12,18 +14,25 @@ class AlertsFrameAndWindowsPage(BasePage):
     FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2']")
     BROWSER_WINDOWS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-0']")
 
-    def open_alerts_section(self):
-        self.click(self.ALERTS_SECTION)
+    def __init__(self, driver: WebDriver) -> None:
+        super().__init__(driver)
+        self.alerts_section = Button(self.ALERTS_SECTION, "Alerts Section")
+        self.nested_frames_section = Button(self.NESTED_FRAMES_SECTION, "Nested Frames Section")
+        self.frames_section = Button(self.FRAMES_SECTION, "Frames Section")
+        self.browser_windows_section = Button(self.BROWSER_WINDOWS_SECTION, "Browser Windows Section")
+
+    def open_alerts_section(self) -> AlertsPage:
+        self.alerts_section.click()
         return AlertsPage(self.driver)
 
-    def open_nested_frames_section(self):
-        self.click(self.NESTED_FRAMES_SECTION)
+    def open_nested_frames_section(self) -> NestedFramesPage:
+        self.nested_frames_section.click()
         return NestedFramesPage(self.driver)
 
-    def open_frames_section(self):
-        self.click(self.FRAMES_SECTION)
+    def open_frames_section(self) -> FramesPage:
+        self.frames_section.click()
         return FramesPage(self.driver)
     
-    def open_browser_windows_section(self):
-        self.click(self.BROWSER_WINDOWS_SECTION)
+    def open_browser_windows_section(self) -> BrowserWindowsPage:
+        self.browser_windows_section.click()
         return BrowserWindowsPage(self.driver)

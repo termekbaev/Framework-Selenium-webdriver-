@@ -1,5 +1,12 @@
-from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.remote.webdriver import WebDriver
+from pages.base_page import BasePage
+from elements.button import Button
+from elements.input import Input
+from elements.base_element import BaseElement
+from typing import Dict, List
+
 
 class WebTablesPage(BasePage):
     UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
@@ -16,30 +23,48 @@ class WebTablesPage(BasePage):
     HEADER_ROW = (By.CLASS_NAME, "rt-resizable-header-content")
     DELETE_BUTTON = (By.ID, "delete-record-4")
     
-    def click_add_button(self):
-        self.click(self.ADD_BUTTON)
+    def __init__(self, driver: WebDriver) -> None:
+        super().__init__(driver)
+        self.add_button = Button(self.ADD_BUTTON, "Add Button")
+        self.registration_form = BaseElement(self.REGISTRATION_FORM, "Registration Form")
+        self.first_name_input = Input(self.FIRST_NAME_INPUT, "First Name Input")
+        self.last_name_input = Input(self.LAST_NAME_INPUT, "Last Name Input")
+        self.age_input = Input(self.AGE_INPUT, "Age Input")
+        self.email_input = Input(self.EMAIL_INPUT, "Email Input")
+        self.salary_input = Input(self.SALARY_INPUT, "Salary Input")
+        self.department_input = Input(self.DEPARTMENT_INPUT, "Department Input")
+        self.submit_button = Button(self.SUBMIT_BUTTON, "Submit Button")
+        self.table_rows = BaseElement(self.TABLE_ROWS, "Table Rows")
+        self.header_row = BaseElement(self.HEADER_ROW, "Header Row")
+        self.delete_button = Button(self.DELETE_BUTTON, "Delete Button")
 
-    def is_registration_form_displayed(self):
-        return self.is_element_displayed(self.REGISTRATION_FORM)
-    
-    def get_table_row_count(self):
-        return len(self.driver.find_elements(*self.TABLE_ROWS))
-    
-    def fill_registration_form(self, user_data):
-        self.find_element(self.FIRST_NAME_INPUT).send_keys(user_data['first_name'])
-        self.find_element(self.LAST_NAME_INPUT).send_keys(user_data['last_name'])
-        self.find_element(self.AGE_INPUT).send_keys(user_data['age'])
-        self.find_element(self.EMAIL_INPUT).send_keys(user_data['email'])
-        self.find_element(self.SALARY_INPUT).send_keys(user_data['salary'])
-        self.find_element(self.DEPARTMENT_INPUT).send_keys(user_data['department'])
+    def click_add_button(self) -> None:
+        self.add_button.click()
 
-    def click_submit_button(self):
-        self.click(self.SUBMIT_BUTTON)
+    def is_registration_form_displayed(self) -> bool:
+        return self.registration_form.is_displayed()
+    
+    def get_all_rows(self) -> List[WebElement]:
+        return self.table_rows.find_elements()
+    
+    def get_table_row_count(self) -> int:
+        return len(self.get_all_rows())
+    
+    def fill_registration_form(self, user_data: Dict[str, str]) -> None:
+        self.first_name_input.clear_and_type(user_data["first_name"])
+        self.last_name_input.clear_and_type(user_data["last_name"])
+        self.age_input.clear_and_type(user_data["age"])
+        self.email_input.clear_and_type(user_data["email"])
+        self.salary_input.clear_and_type(user_data["salary"])
+        self.department_input.clear_and_type(user_data["department"])
+
+    def click_submit_button(self) -> None:
+        self.submit_button.click()
         self.wait.until(lambda d: not d.find_elements(*self.REGISTRATION_FORM))
 
-    def get_users_from_table(self):
-        header_row = self.driver.find_elements(*self.HEADER_ROW)
-        rows = self.driver.find_elements(*self.TABLE_ROWS)
+    def get_users_from_table(self) -> List[Dict[str, str]]:
+        header_row = self.header_row.find_elements()
+        rows = self.get_all_rows()
         users = []
         for row in rows:
             current_user = {}
@@ -53,8 +78,8 @@ class WebTablesPage(BasePage):
             users.append(current_user)
         return users
     
-    def delete_user(self, user_data):
-        rows = self.driver.find_elements(*self.TABLE_ROWS)
+    def delete_user(self, user_data) -> None:
+        rows = self.table_rows.find_elements()
         for row in rows:
             cells = row.find_elements(By.CLASS_NAME, "rt-td")
             if (cells[0].text == user_data['first_name'] and

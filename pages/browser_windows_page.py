@@ -1,8 +1,9 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 from pages.base_page import BasePage
 from pages.links_page import LinksPage
 from pages.sample_page import SamplePage
-from selenium.webdriver.common.by import By
-
+from elements.button import Button
 
 class BrowserWindowsPage(BasePage):
     UNIQUE_ELEMENT = (By.ID, "browserWindows")
@@ -11,12 +12,18 @@ class BrowserWindowsPage(BasePage):
     ELEMENTS_TAB_FOR_WAITING_COLLAPSE = (By.XPATH, "//*[contains(@class, 'element-list')]")
     LINKS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-5']")
 
-    def click_new_tab_button_that_open_sample_page(self):
-        self.click(self.NEW_TAB_BUTTON)
+    def __init__(self, driver: WebDriver) -> None:
+        super().__init__(driver)
+        self.new_tab_button = Button(self.NEW_TAB_BUTTON, "New Tab Button")
+        self.elements_pannel = Button(self.ELEMENTS_PANNEL, "Elements Pannel")
+        self.links_section = Button(self.LINKS_SECTION, "Links Section")
+
+    def click_new_tab_button_that_open_sample_page(self) -> SamplePage:
+        self.new_tab_button.click()
         return SamplePage(self.driver)
     
     def open_links_section(self):
-        self.click(self.ELEMENTS_PANNEL)
+        self.elements_pannel.click()
         self.wait.until(lambda d: "collapsing" not in d.find_element(*self.ELEMENTS_TAB_FOR_WAITING_COLLAPSE).get_attribute("class"))
-        self.click(self.LINKS_SECTION)
+        self.links_section.click()
         return LinksPage(self.driver)

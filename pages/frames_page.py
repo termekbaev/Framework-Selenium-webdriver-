@@ -9,7 +9,7 @@ class FramesPage(BasePage):
     FRAME_TOP = (By.ID, "frame1")
     FRAME_BOTTOM = (By.ID, "frame2")
 
-    def switch_and_get_top_frame_text(self):
+    def switch_and_get_top_frame_text(self) -> str:
         frame_util = FrameUtil(self.driver)
         frame_util.switch_to_frame(self.FRAME_TOP)
         top_frame_page = TopFramePage(self.driver)
@@ -17,7 +17,7 @@ class FramesPage(BasePage):
         frame_util.switch_to_default_content()
         return top_frame_text
     
-    def switch_and_get_bottom_frame_text(self):
+    def switch_and_get_bottom_frame_text(self) -> str:
         frame_util = FrameUtil(self.driver)
         frame_util.switch_to_frame(self.FRAME_BOTTOM)
         bottom_frame_page = BottomFramePage(self.driver)
