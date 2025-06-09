@@ -6,7 +6,7 @@ from elements.button import Button
 from elements.input import Input
 from elements.base_element import BaseElement
 from typing import Dict, List
-
+import logging
 
 class WebTablesPage(BasePage):
     UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
@@ -37,6 +37,7 @@ class WebTablesPage(BasePage):
         self.table_rows = BaseElement(self.TABLE_ROWS, "Table Rows")
         self.header_row = BaseElement(self.HEADER_ROW, "Header Row")
         self.delete_button = Button(self.DELETE_BUTTON, "Delete Button")
+        self.logger = logging.getLogger(__name__)
 
     def click_add_button(self) -> None:
         self.add_button.click()
@@ -51,12 +52,19 @@ class WebTablesPage(BasePage):
         return len(self.get_all_rows())
     
     def fill_registration_form(self, user_data: Dict[str, str]) -> None:
-        self.first_name_input.clear_and_type(user_data["first_name"])
-        self.last_name_input.clear_and_type(user_data["last_name"])
-        self.age_input.clear_and_type(user_data["age"])
-        self.email_input.clear_and_type(user_data["email"])
-        self.salary_input.clear_and_type(user_data["salary"])
-        self.department_input.clear_and_type(user_data["department"])
+        self.logger.info(f"Filling form with data: {user_data}")
+        try:
+            self.first_name_input.clear_and_type(user_data["first_name"])
+            self.last_name_input.clear_and_type(user_data["last_name"])
+            self.age_input.clear_and_type(user_data["age"])
+            self.email_input.clear_and_type(user_data["email"])
+            self.salary_input.clear_and_type(user_data["salary"])
+            self.department_input.clear_and_type(user_data["department"])
+
+            self.logger.debug("Form filled successfully")
+        except Exception as e:
+            self.logger.error(f"Form filling failed: {str(e)}")
+            raise
 
     def click_submit_button(self) -> None:
         self.submit_button.click()
@@ -89,5 +97,6 @@ class WebTablesPage(BasePage):
                 cells[4].text == user_data['salary'] and
                 cells[5].text == user_data['department']):
                     row.find_element(*self.DELETE_BUTTON).click()
+                    self.logger.info(f"User: {user_data} deleted")
                     return
         raise ValueError(f"User [{user_data}] not in table")

@@ -45,6 +45,7 @@ class BrowserFactory:
             options.add_argument(self.CHROME_LANG.format(cfg.lang))
             options.add_argument(self.CHROME_WINDOW_SIZE.format(cfg.window_size))
             options.page_load_strategy = cfg.page_load_strategy
+            self.logger.info(f"With options = {self._config.app_config.chrome_options.__dict__}")
 
             driver = webdriver.Chrome(options=options)
             if not cfg.headless:
@@ -69,6 +70,7 @@ class BrowserFactory:
 
             options.set_preference(self.FIREFOX_LANG_PREFERENCE, cfg.lang)
             options.page_load_strategy = cfg.page_load_strategy
+            self.logger.info(f"With options = {self._config.app_config.firefox_options.__dict__}")
 
             driver = webdriver.Firefox(options=options)
             driver.set_window_size(*map(int, cfg.window_size.split(',')))

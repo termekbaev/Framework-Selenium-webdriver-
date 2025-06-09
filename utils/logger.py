@@ -32,5 +32,3 @@ class Logger:
         )
 
         yield logger
-
-        logging.info(f"Test {request.node.nodeid} completed")

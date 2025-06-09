@@ -9,7 +9,7 @@ class LinksPage(BasePage):
     
     def __init__(self, driver: WebDriver) -> None:
         super().__init__(driver)
-        self.home_link = BaseElement(self.HOME_LINK, "home Link")
+        self.home_link = BaseElement(self.HOME_LINK, "Home Link")
 
     def click_home_link(self) -> None:
         self.home_link.click()
