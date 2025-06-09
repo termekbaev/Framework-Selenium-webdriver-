@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils.driver_manager import DriverManager
 from typing import Tuple, List
+import logging
 
 class BaseElement:
     def __init__(self, locator: Tuple[By, str], name: str = "", timeout: int = 5) -> None:
@@ -12,6 +13,7 @@ class BaseElement:
         self.timeout = timeout
         self.driver = DriverManager().driver
         self.wait = WebDriverWait(self.driver, self.timeout)
+        self.logger = logging.getLogger(__name__)
 
     def find_element(self) -> WebElement:
         return self.wait.until(
@@ -26,7 +28,13 @@ class BaseElement:
         )
 
     def click(self) -> None:
-        self.find_element().click()
+        self.logger.info(f"Clicking element: {self.locator}")
+        try:
+            self.find_element().click()
+        except Exception as e:
+            self.logger.error(f"Click failed on {self.locator}: {str(e)}")
+            raise
+
 
     def is_displayed(self) -> bool:
         try:
