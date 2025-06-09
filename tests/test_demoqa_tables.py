@@ -1,4 +1,7 @@
 from pages.main_page import MainPage
+from utils.driver_manager import DriverManager
+from utils.config_reader import ConfigReader
+from typing import Dict
 import logging
 import pytest
 import json
@@ -9,7 +12,7 @@ with open("config/test_web_tables_data.json") as f:
     test_data = json.load(f)
 
 @pytest.mark.parametrize("user_data", test_data["users"], ids=lambda x: f"{x['first_name']} {x['last_name']}")
-def test_web_tables(driver_manager, config, user_data):
+def test_web_tables(driver_manager: DriverManager, config: ConfigReader, user_data: Dict[str, str]) -> None:
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     

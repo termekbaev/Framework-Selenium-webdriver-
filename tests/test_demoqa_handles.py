@@ -1,10 +1,12 @@
 from pages.main_page import MainPage
 from utils.tab_util import TabUtil
+from utils.driver_manager import DriverManager
+from utils.config_reader import ConfigReader
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_handles(driver_manager, config):
+def test_handles(driver_manager: DriverManager, config: ConfigReader) -> None:
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     tab_util = TabUtil(driver)

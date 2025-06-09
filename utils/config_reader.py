@@ -4,7 +4,7 @@ from models.app_config import AppConfig
 class ConfigReader:
     CONFIG_FILE_PATH = "config/config.json"
 
-    def __init__(self, config_file_path=CONFIG_FILE_PATH):
+    def __init__(self, config_file_path: str = CONFIG_FILE_PATH) -> None:
         with open(config_file_path) as f:
             config_data = json.load(f)
             self.config = AppConfig(

@@ -2,9 +2,9 @@ import json
 from typing import List, Dict
 
 class TestDataReader:
-    def __init__(self, test_data_file):
+    def __init__(self, test_data_file: str) -> None:
         with open(test_data_file) as f:
             self.test_data = json.load(f)
 
-    def get_users(self) -> List[Dict]:
+    def get_users(self) -> List[Dict[str, str]]:
         return self.test_data.get("users", [])

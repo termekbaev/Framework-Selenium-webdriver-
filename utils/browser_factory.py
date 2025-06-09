@@ -1,5 +1,6 @@
 from selenium import webdriver
 from utils.config_reader import ConfigReader
+from typing import Union
 
 class BrowserFactory:
     CHROME_HEADLESS = "--headless=new"
@@ -13,10 +14,10 @@ class BrowserFactory:
     FIREFOX_DISABLE_EXTENSIONS = "--disable-extensions"
     FIREFOX_LANG_PREFERENCE = "intl.accept_languages"
 
-    def __init__(self, config: ConfigReader):
+    def __init__(self, config: ConfigReader) -> None:
         self._config = config
 
-    def create_driver(self):
+    def create_driver(self) -> Union[webdriver.Chrome, webdriver.Firefox]:
         browser_name = self._config.app_config.browser.lower()
 
         if browser_name == "chrome":

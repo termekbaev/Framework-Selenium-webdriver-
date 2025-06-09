@@ -1,4 +1,6 @@
 from utils.alerts_util import AlertUtil
+from utils.driver_manager import DriverManager
+from utils.config_reader import ConfigReader
 from pages.main_page import MainPage
 import logging
 import random
@@ -6,10 +8,10 @@ import string
 
 logger = logging.getLogger(__name__)
 
-def generate_random_text(length=20):
+def generate_random_text(length: int = 20) -> str:
     return ''.join(random.choice(string.ascii_letters) for _ in range(length))
 
-def test_alerts(driver_manager, config):
+def test_alerts(driver_manager: DriverManager, config: ConfigReader) -> None:
     driver = driver_manager.driver
     driver.get(config.app_config.main_url)
     

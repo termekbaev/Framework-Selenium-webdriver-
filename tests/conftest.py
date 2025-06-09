@@ -1,32 +1,33 @@
-import pytest
-import logging
-import os
 from utils.config_reader import ConfigReader
 from utils.driver_manager import DriverManager
 from utils.data_reader import TestDataReader
+from typing import Generator
+import pytest
+import logging
+import os
 
 _log_file_cleared = False
 
 @pytest.fixture()
-def driver_manager(config):
+def driver_manager(config: ConfigReader) -> Generator[DriverManager, None, None]:
     driver_manager = DriverManager(config)
     yield driver_manager
     driver_manager.quit()
 
 @pytest.fixture
-def config():
+def config() -> ConfigReader:
     return ConfigReader()
 
 @pytest.fixture
-def web_tables_test_data():
+def web_tables_test_data() -> TestDataReader:
     return TestDataReader("config/test_web_tables_data.json")
 
 @pytest.fixture
-def alerts_test_data():
+def alerts_test_data() -> TestDataReader:
     return TestDataReader("config/test_alerts_data.json")
 
 @pytest.fixture(autouse=True)
-def setup_logging(request):
+def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
     global _log_file_cleared
 
     if not _log_file_cleared:

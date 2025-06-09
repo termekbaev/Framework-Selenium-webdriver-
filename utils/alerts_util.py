@@ -1,13 +1,13 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.common.exceptions import NoAlertPresentException
 
 class AlertUtil:
-    def __init__(self, driver: WebDriver) -> bool:
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
 
-    def is_alert_present(self):
+    def is_alert_present(self) -> bool:
         try:
             WebDriverWait(self.driver, 1).until(EC.alert_is_present())
             return True

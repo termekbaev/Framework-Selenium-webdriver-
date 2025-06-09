@@ -7,7 +7,7 @@ class ChromeOptionsConfig:
         lang: str = "en",
         window_size: str = "1920,1080",
         page_load_strategy: str = "eager"
-    ):
+    ) -> None:
         self.headless = headless
         self.incognito = incognito
         self.disable_extensions = disable_extensions
