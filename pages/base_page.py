@@ -29,11 +29,3 @@ class BasePage:
     
     def get_element_text(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator)).text
-    
-    def is_alert_presented(self):
-        try:
-            WebDriverWait(self.driver, 1).until(EC.alert_is_present())
-            return True
-        except:
-            return False
-    
