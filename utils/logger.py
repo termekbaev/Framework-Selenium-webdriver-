@@ -26,7 +26,6 @@ class Logger:
             datefmt="%H:%M:%S",
             handlers=[
                 logging.FileHandler("test.log", "a"),
-                logging.StreamHandler()
             ],
             force=True
         )
