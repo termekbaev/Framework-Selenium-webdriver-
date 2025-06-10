@@ -7,7 +7,11 @@ from typing import Tuple, List
 import logging
 
 class BaseElement:
-    def __init__(self, locator: Tuple[By, str], name: str = "", timeout: int = 5) -> None:
+    def __init__(self, 
+                 locator: Tuple[By, str], 
+                 name: str = "", 
+                 timeout: int = 5
+    ) -> None:
         self.locator = locator
         self.name = name
         self.timeout = timeout
