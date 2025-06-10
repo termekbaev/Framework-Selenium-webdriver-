@@ -15,9 +15,15 @@ class TabUtil:
         return self.driver.window_handles
 
     def switch_to_tab(self, window_handle: str) -> None:
+<<<<<<< HEAD
         try:
             self.driver.switch_to.window(window_handle)
             self.logger.info(f"Switching to tab: Title: '{self.driver.title}' | Handle: {window_handle}")
+=======
+        self.logger.debug(f"Switching to tab: {window_handle}")
+        try:
+            self.driver.switch_to.window(window_handle)
+>>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
         except NoSuchWindowException:
             self.logger.error(f"Tab not found: {window_handle}")
             raise
@@ -35,7 +41,11 @@ class TabUtil:
         return new_tab
 
     def close_current_tab(self) -> None:
+<<<<<<< HEAD
         self.logger.info(f"Tab closed. Title: '{self.driver.title}' | Handle: {self.driver.current_window_handle}")
+=======
+        self.logger.info(f"Tab closed {self.driver.current_window_handle}")
+>>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
         self.driver.close()
 
     def is_tab_open(self, window_handle: str) -> bool:

@@ -32,7 +32,11 @@ class BaseElement:
         )
 
     def click(self) -> None:
+<<<<<<< HEAD
         self.logger.info(f"Clicking element: {self.name} = {self.locator}")
+=======
+        self.logger.info(f"Clicking element: {self.locator}")
+>>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
         try:
             self.find_element().click()
         except Exception as e:

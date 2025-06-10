@@ -107,6 +107,10 @@ class WebTablesPage(BasePage):
                 cells[4].text == user_data['salary'] and
                 cells[5].text == user_data['department']):
                     row.find_element(*self.DELETE_BUTTON).click()
+<<<<<<< HEAD
                     self.logger.info(f"User deleted: {user_data} ")
+=======
+                    self.logger.info(f"User: {user_data} deleted")
+>>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
                     return
         raise ValueError(f"User [{user_data}] not in table")
