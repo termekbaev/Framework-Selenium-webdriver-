@@ -78,14 +78,10 @@ class WebTablesPage(BasePage):
         users = []
         self.logger.info(f"Get all users from table:")
         for row in rows:
-            current_user = {}
+            current_user = {"first_name": "", "last_name": "", "age": "", "email": "", "salary": "", "department": ""}
             cells = row.find_elements(By.CLASS_NAME, "rt-td")
-            current_user["first_name"] = next((cells[index].text for index, header in enumerate(header_row) if "first" in header.text.lower()))
-            current_user["last_name"] = next((cells[index].text for index, header in enumerate(header_row) if "last" in header.text.lower()))
-            current_user["age"] = next((cells[index].text for index, header in enumerate(header_row) if "age" in header.text.lower()))
-            current_user["email"] = next((cells[index].text for index, header in enumerate(header_row) if "mail" in header.text.lower()))
-            current_user["salary"] = next((cells[index].text for index, header in enumerate(header_row) if "salary" in header.text.lower()))
-            current_user["department"] = next((cells[index].text for index, header in enumerate(header_row) if "department" in header.text.lower()))
+            for k in current_user.keys():
+                current_user[k] = next((cells[index].text for index, header in enumerate(header_row) if k.split("_")[0] in header.text.lower()))
             users.append(current_user)
             self.logger.info(f"     {current_user}")
         return users
