@@ -29,20 +29,16 @@ def test_alerts(driver_manager: DriverManager, config: ConfigReader) -> None:
         alerts_util = AlertUtil(driver)
 
         alerts_page.click_alert_button()
-<<<<<<< HEAD
         assert alerts_util.is_alert_present(), "Alert not opened"
-=======
->>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
+
         alert_text = alerts_util.get_alert_text()
         alerts_util.accept_alert()
         assert alert_text == "You clicked a button", "Incorrect alert text"
         assert not alerts_util.is_alert_present(), "Alert not closed"
 
         alerts_page.click_confirm_button()
-<<<<<<< HEAD
         assert alerts_util.is_alert_present(), "Confirm not opened"
-=======
->>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
+
         confirm_text = alerts_util.get_alert_text()
         alerts_util.accept_alert()
         confirm_result = alerts_page.get_confirm_result_text()
@@ -50,10 +46,8 @@ def test_alerts(driver_manager: DriverManager, config: ConfigReader) -> None:
         assert "Ok" in confirm_result, "Confirm result not shown, or not 'OK'"
 
         alerts_page.click_prompt_button()
-<<<<<<< HEAD
         assert alerts_util.is_alert_present(), "Prompt not opened"
-=======
->>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
+
         prompt_text = alerts_util.get_alert_text()
         random_text = generate_random_text()
         alerts_util.send_text_to_alert(random_text)

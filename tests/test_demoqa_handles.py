@@ -16,10 +16,7 @@ def test_handles(driver_manager: DriverManager, config: ConfigReader) -> None:
         assert main_page.is_opened(), "Main page is not opened"
         
         alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()
-<<<<<<< HEAD
         assert alerts_frame_and_windows_page.is_opened(), "Alerts, Frame & Windows page is not opened"
-=======
->>>>>>> 19f1b34191763c2dd788802b6ec3defc06e01290
         browser_windows_page = alerts_frame_and_windows_page.open_browser_windows_section()
         assert browser_windows_page.is_opened(), "Browser Windows page is not opened"
         
