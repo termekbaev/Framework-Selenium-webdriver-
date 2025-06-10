@@ -2,10 +2,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.common.exceptions import NoAlertPresentException
+import logging
 
 class AlertUtil:
     def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
 
     def is_alert_present(self) -> bool:
         try:
@@ -18,6 +20,7 @@ class AlertUtil:
         if not self.is_alert_present():
             raise NoAlertPresentException("Alert not present")
         alert = self.driver.switch_to.alert
+        self.logger.info(f"Get alert text '{alert.text}'")
         return alert.text
         
     def accept_alert(self) -> None:
@@ -25,15 +28,18 @@ class AlertUtil:
             raise NoAlertPresentException("Alert not present")
         alert = self.driver.switch_to.alert
         alert.accept()
+        self.logger.info(f"Alert accepted")
 
     def dismiss_alert(self) -> None:
         if not self.is_alert_present():
             raise NoAlertPresentException("Alert not present")
         alert = self.driver.switch_to.alert
         alert.dismiss()
+        self.logger.info(f"Alert dismissed")
 
     def send_text_to_alert(self, text: str) -> None:
         if not self.is_alert_present():
             raise NoAlertPresentException("Alert not present")
         alert = self.driver.switch_to.alert
         alert.send_keys(text)
+        self.logger.info(f"Sended text '{text}' to alert")

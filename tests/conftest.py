@@ -21,10 +21,6 @@ def config() -> ConfigReader:
 def web_tables_test_data() -> TestDataReader:
     return TestDataReader("config/test_web_tables_data.json")
 
-@pytest.fixture
-def alerts_test_data() -> TestDataReader:
-    return TestDataReader("config/test_alerts_data.json")
-
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
     yield from Logger.setup_logging(request)

@@ -3,6 +3,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from pages.base_page import BasePage
 from elements.button import Button
 from elements.base_element import BaseElement
+import logging
 
 class AlertsPage(BasePage):
     UNIQUE_ELEMENT = (By.ID, "javascriptAlertsWrapper")
@@ -19,15 +20,19 @@ class AlertsPage(BasePage):
         self.prompt_button = Button(self.PROMPT_BUTTON, "Prompt Button")
         self.confirm_result = BaseElement(self.CONFIRM_RESULT, "Confirm Result")
         self.prompt_result = BaseElement(self.PROMPT_RESULT, "Prompt Result")
+        self.logger = logging.getLogger(__name__)
 
     def click_alert_button(self) -> None:
         self.alert_button.click()
+        self.logger.info(f"Opened alert")
 
     def click_confirm_button(self) -> None:
         self.confirm_button.click()
+        self.logger.info(f"Opened confirm")
 
     def click_prompt_button(self) -> None:
         self.prompt_button.click()
+        self.logger.info(f"Opened prompt")
 
     def get_confirm_result_text(self) -> str:
         return self.confirm_result.get_text()

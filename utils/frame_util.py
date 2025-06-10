@@ -13,7 +13,7 @@ class FrameUtil:
         self.logger = logging.getLogger(__name__)
 
     def switch_to_frame(self, frame_locator: Tuple[By, str]) -> None:
-        self.logger.debug(f"Switching to frame: {frame_locator}")
+        self.logger.info(f"Switching to frame: {frame_locator}")
         try:
             self.wait.until(EC.frame_to_be_available_and_switch_to_it(frame_locator))
         except TimeoutException:
@@ -21,7 +21,7 @@ class FrameUtil:
             raise
 
     def switch_to_default_content(self) -> None:
-        self.logger.debug(f"Switching to default content")
+        self.logger.info(f"Switching to default content")
         self.driver.switch_to.default_content()
 
     def is_frame_available(self, frame_locator: Tuple[By, str]) -> bool:

@@ -49,7 +49,9 @@ class WebTablesPage(BasePage):
         return self.table_rows.find_elements()
     
     def get_table_row_count(self) -> int:
-        return len(self.get_all_rows())
+        row_count = len(self.get_all_rows())
+        self.logger.info(f"Getting row count = {row_count} in table")
+        return row_count
     
     def fill_registration_form(self, user_data: Dict[str, str]) -> None:
         self.logger.info(f"Filling form with data: {user_data}")
@@ -74,6 +76,7 @@ class WebTablesPage(BasePage):
         header_row = self.header_row.find_elements()
         rows = self.get_all_rows()
         users = []
+        self.logger.info(f"Get all users from table:")
         for row in rows:
             current_user = {}
             cells = row.find_elements(By.CLASS_NAME, "rt-td")
@@ -84,6 +87,7 @@ class WebTablesPage(BasePage):
             current_user["salary"] = next((cells[index].text for index, header in enumerate(header_row) if "salary" in header.text.lower()))
             current_user["department"] = next((cells[index].text for index, header in enumerate(header_row) if "department" in header.text.lower()))
             users.append(current_user)
+            self.logger.info(f"     {current_user}")
         return users
     
     def delete_user(self, user_data) -> None:
@@ -97,6 +101,6 @@ class WebTablesPage(BasePage):
                 cells[4].text == user_data['salary'] and
                 cells[5].text == user_data['department']):
                     row.find_element(*self.DELETE_BUTTON).click()
-                    self.logger.info(f"User: {user_data} deleted")
+                    self.logger.info(f"User deleted: {user_data} ")
                     return
         raise ValueError(f"User [{user_data}] not in table")
