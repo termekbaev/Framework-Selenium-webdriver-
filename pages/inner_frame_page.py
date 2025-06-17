@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from elements.base_element import BaseElement
+from elements.label import Label
 from selenium.webdriver.common.by import By
 
 class InnerFramePage(BasePage):
@@ -7,7 +7,7 @@ class InnerFramePage(BasePage):
 
     def __init__(self) -> None:
         super().__init__()
-        self.inner_frame_p_tag_with_text = BaseElement(self.INNER_FRAME_P_TAG_WITH_TEXT, "Inner Frame Text")
+        self.inner_frame_p_tag_with_text = Label(self.INNER_FRAME_P_TAG_WITH_TEXT, "Inner Frame Text")
 
     def get_inner_frame_text(self) -> str:
         return self.inner_frame_p_tag_with_text.get_text()

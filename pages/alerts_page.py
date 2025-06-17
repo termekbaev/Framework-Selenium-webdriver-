@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from elements.button import Button
-from elements.base_element import BaseElement
+from elements.label import Label
 import logging
 
 class AlertsPage(BasePage):
@@ -17,8 +17,8 @@ class AlertsPage(BasePage):
         self.alert_button = Button(self.ALERT_BUTTON, "Alert Button")
         self.confirm_button = Button(self.CONFIRM_BUTTON, "Confirm Button")
         self.prompt_button = Button(self.PROMPT_BUTTON, "Prompt Button")
-        self.confirm_result = BaseElement(self.CONFIRM_RESULT, "Confirm Result")
-        self.prompt_result = BaseElement(self.PROMPT_RESULT, "Prompt Result")
+        self.confirm_result = Label(self.CONFIRM_RESULT, "Confirm Result")
+        self.prompt_result = Label(self.PROMPT_RESULT, "Prompt Result")
         self.logger = logging.getLogger(__name__)
 
     def click_alert_button(self) -> None:

@@ -31,15 +31,6 @@ class BaseElement:
             f"No elements found by locator '{self.locator}'"
         )
 
-    def click(self) -> None:
-        self.logger.info(f"Clicking element: {self.name} = {self.locator}")
-        try:
-            self.find_element().click()
-        except Exception as e:
-            self.logger.error(f"Click failed on {self.locator}: {str(e)}")
-            raise
-
-
     def is_displayed(self) -> bool:
         try:
             self.wait.until(EC.visibility_of_element_located(self.locator), 
@@ -48,12 +39,3 @@ class BaseElement:
             return True
         except:
             return False
-
-    def get_text(self) -> str:
-        text = self.find_element().text
-        self.logger.info(f"Get text '{text}' from '{self.name}' by locator {self.locator}")
-        return text
-
-
-
-

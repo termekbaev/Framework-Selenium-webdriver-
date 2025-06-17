@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from pages.inner_frame_page import InnerFramePage
-from elements.base_element import BaseElement
+from elements.label import Label
 from utils.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
 
@@ -10,7 +10,7 @@ class OuterFramePage(BasePage):
 
     def __init__(self) -> None:
         super().__init__()
-        self.outer_frame_body_tag_with_text = BaseElement(self.OUTER_FRAME_BODY_TAG_WITH_TEXT, "Outer Frame Text")
+        self.outer_frame_body_tag_with_text = Label(self.OUTER_FRAME_BODY_TAG_WITH_TEXT, "Outer Frame Text")
 
     def get_outer_frame_text(self) -> str:
         return self.outer_frame_body_tag_with_text.get_text()
