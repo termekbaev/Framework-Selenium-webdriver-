@@ -9,9 +9,9 @@ class NestedFramesPage(BasePage):
     OUTER_FRAME = (By.ID, "frame1")
 
     def get_text_in_frames(self) -> Tuple[str, str]:
-        frame_util = FrameUtil(self.driver)
+        frame_util = FrameUtil()
         frame_util.switch_to_frame(self.OUTER_FRAME)
-        outer_frame = OuterFramePage(self.driver)
+        outer_frame = OuterFramePage()
         outer_frame_text = outer_frame.get_outer_frame_text()
         inner_frame_text = outer_frame.switch_to_inner_frame_and_get_text()
         frame_util.switch_to_default_content()

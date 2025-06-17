@@ -1,6 +1,5 @@
 from selenium import webdriver
 from utils.config_reader import ConfigReader
-from utils.logger import Logger
 from typing import Union
 import logging
 

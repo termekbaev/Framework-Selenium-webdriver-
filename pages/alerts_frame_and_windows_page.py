@@ -5,7 +5,6 @@ from pages.frames_page import FramesPage
 from pages.browser_windows_page import BrowserWindowsPage
 from elements.button import Button
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
 
 class AlertsFrameAndWindowsPage(BasePage):
     UNIQUE_ELEMENT = (By.XPATH, "//*[@fill-rule='evenodd']//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
@@ -14,8 +13,8 @@ class AlertsFrameAndWindowsPage(BasePage):
     FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2']")
     BROWSER_WINDOWS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-0']")
 
-    def __init__(self, driver: WebDriver) -> None:
-        super().__init__(driver)
+    def __init__(self) -> None:
+        super().__init__()
         self.alerts_section = Button(self.ALERTS_SECTION, "Alerts Section")
         self.nested_frames_section = Button(self.NESTED_FRAMES_SECTION, "Nested Frames Section")
         self.frames_section = Button(self.FRAMES_SECTION, "Frames Section")
@@ -23,16 +22,16 @@ class AlertsFrameAndWindowsPage(BasePage):
 
     def open_alerts_section(self) -> AlertsPage:
         self.alerts_section.click()
-        return AlertsPage(self.driver)
+        return AlertsPage()
 
     def open_nested_frames_section(self) -> NestedFramesPage:
         self.nested_frames_section.click()
-        return NestedFramesPage(self.driver)
+        return NestedFramesPage()
 
     def open_frames_section(self) -> FramesPage:
         self.frames_section.click()
-        return FramesPage(self.driver)
+        return FramesPage()
     
     def open_browser_windows_section(self) -> BrowserWindowsPage:
         self.browser_windows_section.click()
-        return BrowserWindowsPage(self.driver)
+        return BrowserWindowsPage()

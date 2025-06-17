@@ -7,11 +7,11 @@ import pytest
 import logging
 
 
-@pytest.fixture()
-def driver_manager(config: ConfigReader) -> Generator[DriverManager, None, None]:
-    driver_manager = DriverManager(config)
-    yield driver_manager
-    driver_manager.quit()
+@pytest.fixture(autouse=True)
+def setup_driver(config: ConfigReader) -> Generator[None, None, None]:
+    DriverManager(config)
+    yield
+    DriverManager().quit()
 
 @pytest.fixture
 def config() -> ConfigReader:

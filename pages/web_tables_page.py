@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.remote.webdriver import WebDriver
 from pages.base_page import BasePage
 from elements.button import Button
 from elements.input import Input
@@ -23,8 +22,8 @@ class WebTablesPage(BasePage):
     HEADER_ROW = (By.CLASS_NAME, "rt-resizable-header-content")
     DELETE_BUTTON = (By.ID, "delete-record-4")
     
-    def __init__(self, driver: WebDriver) -> None:
-        super().__init__(driver)
+    def __init__(self) -> None:
+        super().__init__()
         self.add_button = Button(self.ADD_BUTTON, "Add Button")
         self.registration_form = BaseElement(self.REGISTRATION_FORM, "Registration Form")
         self.first_name_input = Input(self.FIRST_NAME_INPUT, "First Name Input")

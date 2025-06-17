@@ -6,13 +6,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def test_handles(driver_manager: DriverManager, config: ConfigReader) -> None:
+def test_handles(config: ConfigReader) -> None:
     logger.info(f"Starting test Demoqa Handles")
     try:
-        driver = driver_manager.driver
-        driver.get(config.app_config.main_url)
-        tab_util = TabUtil(driver)
-        main_page = MainPage(driver)
+        DriverManager().driver.get(config.app_config.main_url)
+        tab_util = TabUtil()
+        main_page = MainPage()
         assert main_page.is_opened(), "Main page is not opened"
         
         alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()

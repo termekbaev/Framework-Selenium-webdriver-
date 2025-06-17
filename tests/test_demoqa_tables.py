@@ -12,13 +12,12 @@ with open("config/test_web_tables_data.json") as f:
     test_data = json.load(f)
 
 @pytest.mark.parametrize("user_data", test_data["users"], ids=lambda x: f"{x['first_name']} {x['last_name']}")
-def test_web_tables(driver_manager: DriverManager, config: ConfigReader, user_data: Dict[str, str]) -> None:
+def test_web_tables(config: ConfigReader, user_data: Dict[str, str]) -> None:
     logger.info(f"Starting test for user: {user_data['first_name']} {user_data['last_name']}")
     try:
-        driver = driver_manager.driver
-        driver.get(config.app_config.main_url)
+        DriverManager().driver.get(config.app_config.main_url)
         
-        main_page = MainPage(driver)
+        main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         
         elements_page = main_page.open_elements_page()

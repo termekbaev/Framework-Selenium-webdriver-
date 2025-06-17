@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
 from pages.base_page import BasePage
 from elements.button import Button
 from elements.base_element import BaseElement
@@ -13,8 +12,8 @@ class AlertsPage(BasePage):
     CONFIRM_RESULT = (By.ID, "confirmResult")
     PROMPT_RESULT = (By.ID, "promptResult")
 
-    def __init__(self, driver: WebDriver) -> None:
-        super().__init__(driver)
+    def __init__(self) -> None:
+        super().__init__()
         self.alert_button = Button(self.ALERT_BUTTON, "Alert Button")
         self.confirm_button = Button(self.CONFIRM_BUTTON, "Confirm Button")
         self.prompt_button = Button(self.PROMPT_BUTTON, "Prompt Button")

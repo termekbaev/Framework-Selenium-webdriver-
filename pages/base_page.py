@@ -1,12 +1,12 @@
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
+from utils.driver_manager import DriverManager
 import logging
 
 class BasePage:
-    def __init__(self, driver: WebDriver) -> None:
-        self.driver = driver
-        self.wait = WebDriverWait(driver, timeout=5)
+    def __init__(self) -> None:
+        self._driver = DriverManager().driver
+        self.wait = WebDriverWait(self._driver, timeout=5)
         self.logger = logging.getLogger(__name__)
         
     def is_opened(self) -> bool:

@@ -11,13 +11,12 @@ logger = logging.getLogger(__name__)
 def generate_random_text(length: int = 20) -> str:
     return ''.join(random.choice(string.ascii_letters) for _ in range(length))
 
-def test_alerts(driver_manager: DriverManager, config: ConfigReader) -> None:
+def test_alerts(config: ConfigReader) -> None:
     logger.info(f"Starting test Demoqa Alerts")
     try:
-        driver = driver_manager.driver
-        driver.get(config.app_config.main_url)
+        DriverManager().driver.get(config.app_config.main_url)
         
-        main_page = MainPage(driver)
+        main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         
         alerts_frame_and_windows_page = main_page.open_alerts_frame_and_windows_page()
@@ -26,7 +25,7 @@ def test_alerts(driver_manager: DriverManager, config: ConfigReader) -> None:
         alerts_page = alerts_frame_and_windows_page.open_alerts_section()
         assert alerts_page.is_opened(), "Alerts section not opened"
 
-        alerts_util = AlertUtil(driver)
+        alerts_util = AlertUtil()
 
         alerts_page.click_alert_button()
         assert alerts_util.is_alert_present(), "Alert not opened"
