@@ -9,7 +9,7 @@ import logging
 
 @pytest.fixture(autouse=True)
 def setup_driver(config: ConfigReader) -> Generator[None, None, None]:
-    DriverManager(config)
+    DriverManager(config).driver.get(config.app_config.main_url)
     yield
     DriverManager().quit()
 

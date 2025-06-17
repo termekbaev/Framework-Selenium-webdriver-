@@ -1,15 +1,11 @@
 from pages.main_page import MainPage
-from utils.driver_manager import DriverManager
-from utils.config_reader import ConfigReader
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_frames(config: ConfigReader) -> None:
+def test_frames() -> None:
     logger.info(f"Starting test Demoqa Frames")
     try:    
-        DriverManager().driver.get(config.app_config.main_url)
-        
         main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
 

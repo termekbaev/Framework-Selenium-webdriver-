@@ -1,15 +1,12 @@
 from pages.main_page import MainPage
 from utils.tab_util import TabUtil
-from utils.driver_manager import DriverManager
-from utils.config_reader import ConfigReader
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_handles(config: ConfigReader) -> None:
+def test_handles() -> None:
     logger.info(f"Starting test Demoqa Handles")
     try:
-        DriverManager().driver.get(config.app_config.main_url)
         tab_util = TabUtil()
         main_page = MainPage()
         assert main_page.is_opened(), "Main page is not opened"

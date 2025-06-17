@@ -1,10 +1,6 @@
 from utils.alerts_util import AlertUtil
-from utils.driver_manager import DriverManager
-from utils.config_reader import ConfigReader
 from pages.main_page import MainPage
 import logging
-import random
-import string
 
 logger = logging.getLogger(__name__)
 
@@ -14,8 +10,6 @@ def generate_random_text(length: int = 20) -> str:
 def test_alerts(config: ConfigReader) -> None:
     logger.info(f"Starting test Demoqa Alerts")
     try:
-        DriverManager().driver.get(config.app_config.main_url)
-        
         main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         

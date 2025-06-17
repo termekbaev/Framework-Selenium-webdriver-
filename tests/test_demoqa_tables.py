@@ -1,6 +1,4 @@
 from pages.main_page import MainPage
-from utils.driver_manager import DriverManager
-from utils.config_reader import ConfigReader
 from typing import Dict
 import logging
 import pytest
@@ -12,11 +10,9 @@ with open("config/test_web_tables_data.json") as f:
     test_data = json.load(f)
 
 @pytest.mark.parametrize("user_data", test_data["users"], ids=lambda x: f"{x['first_name']} {x['last_name']}")
-def test_web_tables(config: ConfigReader, user_data: Dict[str, str]) -> None:
+def test_web_tables(user_data: Dict[str, str]) -> None:
     logger.info(f"Starting test for user: {user_data['first_name']} {user_data['last_name']}")
     try:
-        DriverManager().driver.get(config.app_config.main_url)
-        
         main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         
