@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
-from pages.top_frame_page import TopFramePage
-from pages.bottom_frame_page import BottomFramePage
+from pages.sample_page import SamplePage
 from utils.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
 
@@ -12,15 +11,15 @@ class FramesPage(BasePage):
     def switch_and_get_top_frame_text(self) -> str:
         frame_util = FrameUtil()
         frame_util.switch_to_frame(self.FRAME_TOP)
-        top_frame_page = TopFramePage()
-        top_frame_text = top_frame_page.get_top_frame_text()
+        top_frame_page = SamplePage()
+        top_frame_text = top_frame_page.get_sample_page_text()
         frame_util.switch_to_default_content()
         return top_frame_text
     
     def switch_and_get_bottom_frame_text(self) -> str:
         frame_util = FrameUtil()
         frame_util.switch_to_frame(self.FRAME_BOTTOM)
-        bottom_frame_page = BottomFramePage()
-        bottom_frame_text = bottom_frame_page.get_bottom_frame_text()
+        bottom_frame_page = SamplePage()
+        bottom_frame_text = bottom_frame_page.get_sample_page_text()
         frame_util.switch_to_default_content()
         return bottom_frame_text
