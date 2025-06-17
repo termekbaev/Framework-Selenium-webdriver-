@@ -4,10 +4,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def generate_random_text(length: int = 20) -> str:
-    return ''.join(random.choice(string.ascii_letters) for _ in range(length))
-
-def test_alerts(config: ConfigReader) -> None:
+def test_alerts() -> None:
     logger.info(f"Starting test Demoqa Alerts")
     try:
         main_page = MainPage()
@@ -42,7 +39,7 @@ def test_alerts(config: ConfigReader) -> None:
         assert alerts_util.is_alert_present(), "Prompt not opened"
 
         prompt_text = alerts_util.get_alert_text()
-        random_text = generate_random_text()
+        random_text = alerts_util.generate_random_text()
         alerts_util.send_text_to_alert(random_text)
         alerts_util.accept_alert()
         prompt_result = alerts_page.get_prompt_result_text()

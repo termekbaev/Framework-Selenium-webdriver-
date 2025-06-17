@@ -3,6 +3,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoAlertPresentException
 from utils.driver_manager import DriverManager
 import logging
+import random
+import string
 
 class AlertUtil:
     def __init__(self) -> None:
@@ -43,3 +45,6 @@ class AlertUtil:
         alert = self._driver.switch_to.alert
         alert.send_keys(text)
         self.logger.info(f"Sended text '{text}' to alert")
+
+    def generate_random_text(self, length: int = 20) -> str:
+        return ''.join(random.choice(string.ascii_letters) for _ in range(length))
