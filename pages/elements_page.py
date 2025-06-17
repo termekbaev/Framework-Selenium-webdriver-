@@ -4,7 +4,7 @@ from elements.button import Button
 from selenium.webdriver.common.by import By
 
 class ElementsPage(BasePage):
-    UNIQUE_ELEMENT = (By.XPATH, "//*[@viewBox='0 0 448 512']//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(text(), 'Elements')]//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
     WEB_TABLES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3']")
 
     def __init__(self) -> None:
