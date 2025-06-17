@@ -2,19 +2,25 @@
   "main_url": "https://demoqa.com",
   "browser": "chrome",
   "chrome_options": {
-    "headless": false,
-    "incognito": true,
-    "disable_extensions": true,
-    "lang": "en",
-    "window_size": "1920,1080",
+    "arguments": [
+      "--headless=new",
+      "--incognito",
+      "--disable-extensions",
+      "--lang=en",
+      "--window-size=1920,1080"
+    ],
     "page_load_strategy": "eager"
   },
   "firefox_options": {
-    "headless": false,
-    "private": true,
-    "disable_extensions": true,
-    "lang": "en",
-    "window_size": "1920,1080",
-    "page_load_strategy": "eager"
+    "arguments": [
+      "--headless",
+      "--private",
+      "--disable-extensions"
+    ],
+    "preferences": {
+      "intl.accept_languages": "en"
+    },
+    "page_load_strategy": "eager",
+    "window_size": "1920,1080"
   }
 }

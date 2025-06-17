@@ -4,17 +4,6 @@ from typing import Union
 import logging
 
 class BrowserFactory:
-    CHROME_HEADLESS = "--headless=new"
-    CHROME_INCOGNITO = "--incognito"
-    CHROME_DISABLE_EXTENSIONS = "--disable-extensions"
-    CHROME_LANG = "--lang={}"
-    CHROME_WINDOW_SIZE = "--window-size={}"
-
-    FIREFOX_HEADLESS = "--headless"
-    FIREFOX_PRIVATE = "--private"
-    FIREFOX_DISABLE_EXTENSIONS = "--disable-extensions"
-    FIREFOX_LANG_PREFERENCE = "intl.accept_languages"
-
     def __init__(self, config: ConfigReader) -> None:
         self._config = config
         self.logger = logging.getLogger(__name__)
@@ -33,22 +22,14 @@ class BrowserFactory:
         try:
             options = webdriver.ChromeOptions()
             cfg = self._config.app_config.chrome_options
-
-            if cfg.headless:
-                options.add_argument(self.CHROME_HEADLESS)
-            if cfg.incognito:
-                options.add_argument(self.CHROME_INCOGNITO)
-            if cfg.disable_extensions:
-                options.add_argument(self.CHROME_DISABLE_EXTENSIONS)
-
-            options.add_argument(self.CHROME_LANG.format(cfg.lang))
-            options.add_argument(self.CHROME_WINDOW_SIZE.format(cfg.window_size))
+            for arg in cfg.arguments:
+                options.add_argument(arg)
             options.page_load_strategy = cfg.page_load_strategy
 
-            self.logger.info(f"With options = {self._config.app_config.chrome_options.__dict__}")
+            self.logger.info(f"With options = {cfg.arguments}")
 
             driver = webdriver.Chrome(options=options)
-            if not cfg.headless:
+            if "--headless=new" not in cfg.arguments:
                 driver.maximize_window()
             return driver
         except Exception as e:
@@ -60,15 +41,10 @@ class BrowserFactory:
         try:
             options = webdriver.FirefoxOptions()
             cfg = self._config.app_config.firefox_options
-
-            if cfg.headless:
-                options.add_argument(self.FIREFOX_HEADLESS)
-            if cfg.private:
-                options.add_argument(self.FIREFOX_PRIVATE)
-            if cfg.disable_extensions:
-                options.add_argument(self.FIREFOX_DISABLE_EXTENSIONS)
-
-            options.set_preference(self.FIREFOX_LANG_PREFERENCE, cfg.lang)
+            for arg in cfg.arguments:
+                options.add_argument(arg)
+            for pref, value in cfg.preferences.items():
+                options.set_preference(pref, value)
             options.page_load_strategy = cfg.page_load_strategy
 
             self.logger.info(f"With options = {self._config.app_config.firefox_options.__dict__}")

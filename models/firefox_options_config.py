@@ -1,16 +1,12 @@
 class FirefoxOptionsConfig:
     def __init__(
         self,
-        headless: bool = False,
-        private: bool = True,
-        disable_extensions: bool = True,
-        lang: str = "en",
-        window_size: str = "1920,1080",
-        page_load_strategy: str = "eager"
+        arguments: list[str],
+        preferences: dict,
+        page_load_strategy: str = "eager",
+        window_size: str = "1920,1080"
     ) -> None:
-        self.headless = headless
-        self.private = private
-        self.disable_extensions = disable_extensions
-        self.lang = lang
-        self.window_size = window_size
+        self.arguments = arguments
+        self.preferences = preferences
         self.page_load_strategy = page_load_strategy
+        self.window_size = window_size
