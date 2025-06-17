@@ -44,11 +44,11 @@ class WebTablesPage(BasePage):
     def is_registration_form_displayed(self) -> bool:
         return self.registration_form.is_displayed()
     
-    def get_all_rows(self) -> List[WebElement]:
+    def __get_all_rows(self) -> List[WebElement]:
         return self.table_rows.find_elements()
     
     def get_table_row_count(self) -> int:
-        row_count = len(self.get_all_rows())
+        row_count = len(self.__get_all_rows())
         self.logger.info(f"Getting row count = {row_count} in table")
         return row_count
     
@@ -73,7 +73,7 @@ class WebTablesPage(BasePage):
 
     def get_users_from_table(self) -> List[Dict[str, str]]:
         header_row = self.header_row.find_elements()
-        rows = self.get_all_rows()
+        rows = self.__get_all_rows()
         users = []
         self.logger.info(f"Get all users from table:")
         for row in rows:

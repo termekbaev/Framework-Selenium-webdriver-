@@ -21,7 +21,7 @@ class BrowserWindowsPage(BasePage):
         self.new_tab_button.click()
         return SamplePage()
     
-    def open_links_section(self):
+    def open_links_section(self) -> LinksPage:
         self.elements_pannel.click()
         self.wait.until(lambda d: "collapsing" not in d.find_element(*self.ELEMENTS_TAB_FOR_WAITING_COLLAPSE).get_attribute("class"))
         self.links_section.click()

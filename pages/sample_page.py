@@ -9,5 +9,5 @@ class SamplePage(BasePage):
         super().__init__()
         self.unique_text = Label(self.UNIQUE_ELEMENT, "Unique Text")
 
-    def get_sample_page_text(self):
+    def get_sample_page_text(self) -> str:
         return self.unique_text.get_text()
