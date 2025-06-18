@@ -8,7 +8,6 @@ from typing import Dict, List
 import logging
 
 class WebTablesPage(BasePage):
-    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
     ADD_BUTTON = (By.ID, "addNewRecordButton")
     REGISTRATION_FORM = (By.CLASS_NAME, "modal-content")
     FIRST_NAME_INPUT = (By.ID, "firstName")
@@ -23,7 +22,8 @@ class WebTablesPage(BasePage):
     DELETE_BUTTON = (By.ID, "delete-record-4")
     
     def __init__(self) -> None:
-        super().__init__()
+        unique_element = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
+        super().__init__(unique_element)
         self.add_button = Button(self.ADD_BUTTON, "Add Button")
         self.registration_form = BaseElement(self.REGISTRATION_FORM, "Registration Form")
         self.first_name_input = Input(self.FIRST_NAME_INPUT, "First Name Input")

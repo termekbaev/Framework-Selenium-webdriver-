@@ -9,7 +9,7 @@ class OuterFramePage(BasePage):
     INNER_FRAME = (By.TAG_NAME, "iframe")
 
     def __init__(self) -> None:
-        super().__init__()
+        super().__init__(unique_element_locator=None, check_is_opened=False)
         self.outer_frame_body_tag_with_text = Label(self.OUTER_FRAME_BODY_TAG_WITH_TEXT, "Outer Frame Text")
 
     def get_outer_frame_text(self) -> str:

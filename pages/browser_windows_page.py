@@ -5,14 +5,14 @@ from pages.sample_page import SamplePage
 from elements.button import Button
 
 class BrowserWindowsPage(BasePage):
-    UNIQUE_ELEMENT = (By.ID, "browserWindows")
     NEW_TAB_BUTTON = (By.ID, "tabButton")
     ELEMENTS_PANNEL = (By.CLASS_NAME, "element-group")
     ELEMENTS_TAB_FOR_WAITING_COLLAPSE = (By.XPATH, "//*[contains(@class, 'element-list')]")
     LINKS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-5']")
 
     def __init__(self) -> None:
-        super().__init__()
+        unique_element = (By.ID, "browserWindows")
+        super().__init__(unique_element)
         self.new_tab_button = Button(self.NEW_TAB_BUTTON, "New Tab Button")
         self.elements_pannel = Button(self.ELEMENTS_PANNEL, "Elements Pannel")
         self.links_section = Button(self.LINKS_SECTION, "Links Section")

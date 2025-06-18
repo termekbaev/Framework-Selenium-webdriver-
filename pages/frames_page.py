@@ -5,9 +5,12 @@ from selenium.webdriver.common.by import By
 from typing import Tuple
 
 class FramesPage(BasePage):
-    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2' and contains(@class, 'active')]")
     FRAME_TOP = (By.ID, "frame1")
     FRAME_BOTTOM = (By.ID, "frame2")
+
+    def __init__(self):
+        unique_element = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2' and contains(@class, 'active')]")
+        super().__init__(unique_element)
 
     def __get_frame_text(self, frame_locator: Tuple[By, str]) -> str:
         frame_util = FrameUtil()

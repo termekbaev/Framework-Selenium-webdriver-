@@ -5,8 +5,11 @@ from selenium.webdriver.common.by import By
 from typing import Tuple
 
 class NestedFramesPage(BasePage):
-    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
     OUTER_FRAME = (By.ID, "frame1")
+
+    def __init__(self):
+        unique_element = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
+        super().__init__(unique_element)
 
     def get_text_in_frames(self) -> Tuple[str, str]:
         frame_util = FrameUtil()
