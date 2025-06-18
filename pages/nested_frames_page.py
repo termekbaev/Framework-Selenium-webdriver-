@@ -7,7 +7,7 @@ from typing import Tuple
 class NestedFramesPage(BasePage):
     OUTER_FRAME = (By.ID, "frame1")
 
-    def __init__(self):
+    def __init__(self) -> None:
         unique_element = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3' and contains(@class, 'active')]")
         super().__init__(unique_element)
 
