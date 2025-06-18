@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from pages.outer_frame_page import OuterFramePage
+from pages.frames.outer_frame_page import OuterFramePage
 from utils.browser.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
 from typing import Tuple

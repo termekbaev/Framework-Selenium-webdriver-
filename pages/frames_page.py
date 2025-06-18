@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from pages.sample_page import SamplePage
+from pages.frames.sample_page import SamplePage
 from utils.browser.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
 from typing import Tuple

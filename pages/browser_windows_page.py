@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.links_page import LinksPage
-from pages.sample_page import SamplePage
+from pages.frames.sample_page import SamplePage
 from elements.button import Button
 
 class BrowserWindowsPage(BasePage):

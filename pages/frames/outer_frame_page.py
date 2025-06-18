@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from pages.inner_frame_page import InnerFramePage
+from pages.frames.inner_frame_page import InnerFramePage
 from elements.label import Label
 from utils.browser.frame_util import FrameUtil
 from selenium.webdriver.common.by import By
