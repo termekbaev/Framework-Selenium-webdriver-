@@ -1,7 +1,7 @@
-from utils.config_reader import ConfigReader
-from utils.driver_manager import DriverManager
-from utils.data_reader import TestDataReader
-from utils.logger import Logger
+from utils.config.config_reader import ConfigReader
+from utils.config.data_reader import TestDataReader
+from utils.browser.driver_manager import DriverManager
+from utils.logging.logger import Logger
 from typing import Generator
 import pytest
 import logging

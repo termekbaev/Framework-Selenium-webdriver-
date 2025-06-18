@@ -1,5 +1,5 @@
 from pages.main_page import MainPage
-from utils.tab_util import TabUtil
+from utils.browser.tab_util import TabUtil
 import logging
 
 logger = logging.getLogger(__name__)

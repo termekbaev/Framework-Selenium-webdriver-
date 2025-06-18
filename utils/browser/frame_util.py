@@ -2,7 +2,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from utils.driver_manager import DriverManager
+from utils.browser.driver_manager import DriverManager
 from typing import Tuple
 import logging
 

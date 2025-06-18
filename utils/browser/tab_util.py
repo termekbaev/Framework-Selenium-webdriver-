@@ -1,5 +1,5 @@
 from selenium.common.exceptions import NoSuchWindowException
-from utils.driver_manager import DriverManager
+from utils.browser.driver_manager import DriverManager
 from typing import List
 import logging
 

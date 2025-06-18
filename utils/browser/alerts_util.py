@@ -1,7 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoAlertPresentException
-from utils.driver_manager import DriverManager
+from utils.browser.driver_manager import DriverManager
 import logging
 import random
 import string

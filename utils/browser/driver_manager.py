@@ -1,7 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
-from utils.config_reader import ConfigReader
-from utils.browser_factory import BrowserFactory
-from utils.singleton_meta import SingletonMeta
+from utils.config.config_reader import ConfigReader
+from utils.browser.browser_factory import BrowserFactory
+from utils.browser.singleton_meta import SingletonMeta
 import logging
 
 class DriverManager(metaclass=SingletonMeta):

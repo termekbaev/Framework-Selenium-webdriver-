@@ -1,5 +1,5 @@
 from selenium import webdriver
-from utils.config_reader import ConfigReader
+from utils.config.config_reader import ConfigReader
 from typing import Union
 import logging
 

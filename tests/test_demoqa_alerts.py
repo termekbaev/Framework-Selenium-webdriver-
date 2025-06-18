@@ -1,4 +1,4 @@
-from utils.alerts_util import AlertUtil
+from utils.browser.alerts_util import AlertUtil
 from pages.main_page import MainPage
 import logging
 
