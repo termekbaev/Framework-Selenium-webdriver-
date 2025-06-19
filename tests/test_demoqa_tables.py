@@ -6,7 +6,7 @@ import json
 
 logger = logging.getLogger(__name__)
 
-with open("config/test_web_tables_data.json") as f:
+with open("test_data/web_tables.json") as f:
     test_data = json.load(f)
 
 @pytest.mark.parametrize("user_data", test_data["users"], ids=lambda x: f"{x['first_name']} {x['last_name']}")

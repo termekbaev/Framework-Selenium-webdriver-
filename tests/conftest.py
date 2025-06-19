@@ -21,11 +21,11 @@ def config() -> ConfigReader:
 
 @pytest.fixture
 def alerts_test_data() -> DataReader:
-    return DataReader("config/test_alerts_data.json")
+    return DataReader("test_data/alerts.json")
 
 @pytest.fixture
 def frames_test_data() -> DataReader:
-    return DataReader("config/test_frames_data.json")
+    return DataReader("test_data/frames.json")
 
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
