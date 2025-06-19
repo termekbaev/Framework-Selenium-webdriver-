@@ -27,6 +27,10 @@ def web_tables_test_data() -> DataReader:
 def alerts_test_data() -> DataReader:
     return DataReader("config/test_alerts_data.json")
 
+@pytest.fixture
+def frames_test_data() -> DataReader:
+    return DataReader("config/test_frames_data.json")
+
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
     yield from Logger.setup_logging(request)

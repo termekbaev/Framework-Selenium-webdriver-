@@ -17,3 +17,9 @@ class DataReader:
             "prompt_text": self.test_data.get("prompt_text"),
             "prompt_result_prefix": self.test_data.get("prompt_result_prefix")
         }
+    
+    def get_frames_texts(self) -> Dict[str, str]:
+        return {
+            "parent_frame": self.test_data.get("parent_frame_text"),
+            "child_frame": self.test_data.get("child_frame_text")
+        }
