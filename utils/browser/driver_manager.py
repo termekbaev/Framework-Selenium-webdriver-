@@ -9,6 +9,7 @@ class DriverManager(metaclass=SingletonMeta):
         self._config = config
         self._driver = None
         self.logger = logging.getLogger(__name__)
+        self._init_driver()
 
     @property
     def driver(self) -> WebDriver:

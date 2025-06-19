@@ -8,10 +8,12 @@ import logging
 
 
 @pytest.fixture(autouse=True)
-def setup_driver(config: ConfigReader) -> Generator[None, None, None]:
-    DriverManager(config).driver.get(config.app_config.main_url)
+def setup_driver(config: ConfigReader, setup_logging) -> Generator[None, None, None]:
+    driver_manager = DriverManager(config)
+    driver = driver_manager.driver
+    driver.get(config.app_config.main_url)
     yield
-    DriverManager().quit()
+    driver_manager.quit()
 
 @pytest.fixture
 def config() -> ConfigReader:
