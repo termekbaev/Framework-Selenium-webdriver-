@@ -1,5 +1,5 @@
 from utils.config.config_reader import ConfigReader
-from utils.config.data_reader import TestDataReader
+from utils.config.data_reader import DataReader
 from utils.browser.driver_manager import DriverManager
 from utils.logging.logger import Logger
 from typing import Generator
@@ -20,8 +20,12 @@ def config() -> ConfigReader:
     return ConfigReader()
 
 @pytest.fixture
-def web_tables_test_data() -> TestDataReader:
-    return TestDataReader("config/test_web_tables_data.json")
+def web_tables_test_data() -> DataReader:
+    return DataReader("config/test_web_tables_data.json")
+
+@pytest.fixture
+def alerts_test_data() -> DataReader:
+    return DataReader("config/test_alerts_data.json")
 
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:

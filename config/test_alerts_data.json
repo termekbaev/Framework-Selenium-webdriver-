@@ -1,0 +1,7 @@
+{
+  "alert_text": "You clicked a button",
+  "confirm_text": "Do you confirm action?",
+  "confirm_result": "Ok",
+  "prompt_text": "Please enter your name",
+  "prompt_result_prefix": "You entered "
+}
