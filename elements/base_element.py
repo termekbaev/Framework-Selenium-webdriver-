@@ -15,8 +15,7 @@ class BaseElement:
         self.locator = locator
         self.name = name
         self.timeout = timeout
-        self.driver = DriverManager().driver
-        self.wait = WebDriverWait(self.driver, self.timeout)
+        self.wait = WebDriverWait(DriverManager().driver, self.timeout)
         self.logger = logging.getLogger(__name__)
 
     def find_element(self) -> WebElement:

@@ -8,8 +8,7 @@ import logging
 
 class FrameUtil:
     def __init__(self) -> None:
-        self._driver = DriverManager().driver
-        self.wait = WebDriverWait(self._driver, timeout = 5)
+        self.wait = WebDriverWait(DriverManager().driver, timeout = 5)
         self.logger = logging.getLogger(__name__)
 
     def switch_to_frame(self, frame_locator: Tuple[By, str]) -> None:
@@ -22,12 +21,12 @@ class FrameUtil:
 
     def switch_to_default_content(self) -> None:
         self.logger.info(f"Switching to default content")
-        self._driver.switch_to.default_content()
+        DriverManager().driver.switch_to.default_content()
 
     def is_frame_available(self, frame_locator: Tuple[By, str]) -> bool:
         try:
             self.wait.until(EC.frame_to_be_available_and_switch_to_it(frame_locator))
-            self._driver.switch_to.default_content()
+            DriverManager().driver.switch_to.default_content()
             return True
         except TimeoutException:
             return False
