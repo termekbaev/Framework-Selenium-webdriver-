@@ -27,6 +27,10 @@ def alerts_test_data() -> DataReader:
 def frames_test_data() -> DataReader:
     return DataReader("test_data/frames.json")
 
+@pytest.fixture
+def progress_bar_test_data() -> DataReader:
+    return DataReader("test_data/progress_bar.json")
+
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
     yield from Logger.setup_logging(request)

@@ -1,12 +1,14 @@
 from pages.main_page import MainPage
+from utils.config.data_reader import DataReader
 from utils.browser.values_generator import ValuesGenerator
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_alerts() -> None:
+def test_alerts(progress_bar_test_data: DataReader) -> None:
     logger.info(f"Starting test Demoqa Alerts")
     try:
+        test_data = progress_bar_test_data.get_progress_bar_data()
         main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         
@@ -24,7 +26,8 @@ def test_alerts() -> None:
         assert progress_bar_page.is_opened(), "Progress bar section not opened"
 
         progress_bar_page.click_start_button()
-        assert 30 <= progress_bar_page.get_progress_bar_value() <= 32, "Bad value, != 30"
+        assert test_data["secret_value"] <= progress_bar_page.get_progress_bar_value() <= test_data["secret_value"] + test_data["error"], \
+            f"Bad value, not between {test_data['secret_value']} and {test_data['secret_value'] + test_data['error']}"
 
         logger.info("Test completed successfully")
     except Exception as e:
