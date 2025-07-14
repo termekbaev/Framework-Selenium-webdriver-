@@ -23,3 +23,9 @@ class DataReader:
             "parent_frame": self.test_data.get("parent_frame_text"),
             "child_frame": self.test_data.get("child_frame_text")
         }
+    
+    def get_progress_bar_data(self) -> Dict[str, int]:
+        return {
+            "secret_value": self.test_data.get("secret_value"),
+            "error": self.test_data.get("error")
+        }

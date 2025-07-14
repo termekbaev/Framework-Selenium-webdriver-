@@ -38,3 +38,6 @@ class BaseElement:
             return True
         except:
             return False
+        
+    def get_attribute(self, attr: str) -> str:
+        return self.find_element().get_attribute(attr)               
