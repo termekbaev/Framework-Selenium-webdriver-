@@ -14,9 +14,11 @@ def test_alerts() -> None:
         assert widgets_page.is_opened(), "Widgets page not opened"
 
         sliders_page = widgets_page.open_sliders_section()
-        assert sliders_page.is_opened(), "Alerts section not opened"
+        assert sliders_page.is_opened(), "Sliders section not opened"
 
-        random_int_value = ValuesGenerator().generate_random_int_value_between_0_and_100()
+        random_int_value = ValuesGenerator().generate_random_int_value(minimum=0, maximum=100)
+        sliders_page.move_slider_to_value(random_int_value)
+        assert random_int_value == sliders_page.get_slider_input_value(random_int_value), "Values are different"
 
         logger.info("Test completed successfully")
     except Exception as e:

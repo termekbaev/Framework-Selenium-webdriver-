@@ -11,7 +11,7 @@ class ValuesGenerator:
         self.logger.info(f"Generated random text '{random_text}'")
         return random_text
     
-    def generate_random_int_value_between_0_and_100(self) -> int:
-        random_int_value = random.randint(0, 100)
+    def generate_random_int_value(self, minimum: int, maximum: int) -> int:
+        random_int_value = random.randint(minimum, maximum)
         self.logger.info(f"Generated random value '{random_int_value}'")
         return random_int_value
