@@ -25,7 +25,7 @@ def test_alerts(progress_bar_test_data: DataReader) -> None:
         progress_bar_page = slider_page.open_progress_bar_section()
         assert progress_bar_page.is_opened(), "Progress bar section not opened"
 
-        progress_bar_page.click_start_button()
+        progress_bar_page.click_start_button_then_stop_on_value_or_near(test_data["secret_value"])
         assert test_data["secret_value"] <= progress_bar_page.get_progress_bar_value() <= test_data["secret_value"] + test_data["error"], \
             f"Bad value, not between {test_data['secret_value']} and {test_data['secret_value'] + test_data['error']}"
 
