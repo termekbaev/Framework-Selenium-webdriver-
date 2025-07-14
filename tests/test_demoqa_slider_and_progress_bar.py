@@ -23,6 +23,9 @@ def test_alerts() -> None:
         progress_bar_page = slider_page.open_progress_bar_section()
         assert progress_bar_page.is_opened(), "Progress bar section not opened"
 
+        progress_bar_page.click_start_button()
+        assert 30 <= progress_bar_page.get_progress_bar_value() <= 32, "Bad value, != 30"
+
         logger.info("Test completed successfully")
     except Exception as e:
         logger.error(f"Test failed: {str(e)}")
