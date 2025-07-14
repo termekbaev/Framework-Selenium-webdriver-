@@ -1,4 +1,5 @@
 from utils.browser.alerts_util import AlertUtil
+from utils.browser.values_generator import ValuesGenerator
 from utils.config.data_reader import DataReader
 from pages.main_page import MainPage
 import logging
@@ -41,7 +42,7 @@ def test_alerts(alerts_test_data: DataReader) -> None:
         assert alerts_util.is_alert_present(), "Prompt not opened"
 
         prompt_text = alerts_util.get_alert_text()
-        random_text = alerts_util.generate_random_text()
+        random_text = ValuesGenerator().generate_random_text()
         alerts_util.send_text_to_alert(random_text)
         alerts_util.accept_alert()
         prompt_result = alerts_page.get_prompt_result_text()
