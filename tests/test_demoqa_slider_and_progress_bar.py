@@ -5,7 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def test_alerts(progress_bar_test_data: DataReader) -> None:
+def test_slider_and_progress_bar(progress_bar_test_data: DataReader) -> None:
     logger.info(f"Starting test Demoqa Alerts")
     try:
         test_data = progress_bar_test_data.get_progress_bar_data()
