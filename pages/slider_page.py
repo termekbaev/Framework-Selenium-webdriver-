@@ -23,7 +23,7 @@ class SliderPage(BasePage):
     def move_slider_to_value(self, value: int) -> None:
         slider_width = self.slider.find_element().size["width"]
         action = ActionChains(DriverManager().driver)
-        for offset in range(int((value / 100) * slider_width - slider_width / 2 - slider_width // 100), slider_width + 1, slider_width // 100):
+        for offset in range(int(value / 100 * slider_width - slider_width / 2 - slider_width / 100), int(slider_width + 1), int(slider_width // 100)):
             action.click_and_hold(self.slider.find_element()).move_by_offset(offset, 0).release().perform()
             if int(self.slider.get_attribute("value")) == value:
                 self.logger.info(f"Moved slider to value {value}")
