@@ -1,7 +1,6 @@
 from pages.main_page import MainPage
 from utils.browser.values_generator import ValuesGenerator
 from utils.config.data_reader import DataReader
-from datetime import date
 import logging
 
 logger = logging.getLogger(__name__)
