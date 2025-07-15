@@ -19,3 +19,6 @@ class ValuesGenerator:
     
     def generate_current_datetime_string_in_format(self, format_string="%d.%m.%Y %H:%M:%S") -> str:
         return datetime.strftime(datetime.now(), format_string)
+    
+    def generate_datetime_string_in_format(self, year=0, month=0, day=0, hour=0, minute=0, second=0, format_string="%d.%m.%Y %H:%M:%S") -> str:
+        return datetime.strftime(datetime(year=year, month=month, day=day, hour=hour, minute=minute, second=second), format_string)
