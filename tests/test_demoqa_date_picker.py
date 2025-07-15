@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
 from utils.browser.values_generator import ValuesGenerator
+from datetime import date
 import logging
 
 logger = logging.getLogger(__name__)
@@ -24,6 +25,14 @@ def test_date_picker() -> None:
             date_picker_page.get_date_and_time_input_data(), \
             "Dates not matched"
 
+        date_picker_page.select_next_29_february()
+        assert value_generator.generate_datetime_string_in_format(
+                    year=date_picker_page.get_needed_year(), 
+                    month=2, 
+                    day=29, 
+                    format_string="%m/%d/%Y") == \
+            date_picker_page.get_date_input_data(), \
+            "Dates not matched"
 
         logger.info("Test completed successfully")
     except Exception as e:
