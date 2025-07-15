@@ -31,6 +31,10 @@ def frames_test_data() -> DataReader:
 def progress_bar_test_data() -> DataReader:
     return DataReader("test_data/progress_bar.json")
 
+@pytest.fixture
+def date_picker_test_data() -> DataReader:
+    return DataReader("test_data/date_picker_data.json")
+
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
     yield from Logger.setup_logging(request)

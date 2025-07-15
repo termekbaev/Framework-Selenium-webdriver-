@@ -29,3 +29,9 @@ class DataReader:
             "secret_value": self.test_data.get("secret_value"),
             "error": self.test_data.get("error")
         }
+    
+    def get_date_picker_data(self) -> Dict[str, int]:
+        return {
+            "needed_month": self.test_data.get("needed_month"),
+            "needed_day": self.test_data.get("needed_day")
+        }
