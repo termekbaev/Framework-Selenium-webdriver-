@@ -40,4 +40,12 @@ class BaseElement:
             return False
         
     def get_attribute(self, attr: str) -> str:
-        return self.find_element().get_attribute(attr)               
+        return self.find_element().get_attribute(attr)        
+
+    def click(self) -> None:
+        self.logger.info(f"Clicking element: {self.name} = {self.locator}")
+        try:
+            self.find_element().click()
+        except Exception as e:
+            self.logger.error(f"Click failed on {self.locator}: {str(e)}")
+            raise       
