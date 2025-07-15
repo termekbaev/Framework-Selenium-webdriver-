@@ -1,6 +1,7 @@
 import random
 import string
 import logging
+from datetime import datetime
 
 class ValuesGenerator:
     def __init__(self) -> None:
@@ -15,3 +16,6 @@ class ValuesGenerator:
         random_int_value = random.randint(minimum, maximum)
         self.logger.info(f"Generated random value '{random_int_value}'")
         return random_int_value
+    
+    def generate_current_datetime_string_in_format(self, format_string="%d.%m.%Y %H:%M:%S") -> str:
+        return datetime.strftime(datetime.now(), format_string)

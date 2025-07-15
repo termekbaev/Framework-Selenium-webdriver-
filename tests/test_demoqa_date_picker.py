@@ -1,4 +1,5 @@
 from pages.main_page import MainPage
+from utils.browser.values_generator import ValuesGenerator
 import logging
 
 logger = logging.getLogger(__name__)
@@ -14,6 +15,15 @@ def test_date_picker() -> None:
 
         date_picker_page = widgets_page.open_date_picker_section()
         assert date_picker_page.is_opened(), "Date picker page not opened"
+
+        value_generator = ValuesGenerator()
+        assert value_generator.generate_current_datetime_string_in_format("%m/%d/%Y") == \
+            date_picker_page.get_date_input_data(),\
+            "Dates not matched"
+        assert value_generator.generate_current_datetime_string_in_format("%B %d, %Y %I:%M %p").replace(" 0", " ") == \
+            date_picker_page.get_date_and_time_input_data(), \
+            "Dates not matched"
+
 
         logger.info("Test completed successfully")
     except Exception as e:
