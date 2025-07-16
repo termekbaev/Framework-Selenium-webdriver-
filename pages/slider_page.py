@@ -8,13 +8,13 @@ from selenium.webdriver.common.action_chains import ActionChains
 import logging
 
 class SliderPage(BasePage):
+    UNIQUE_ELEMENT = (By.XPATH, "//*[@id='sliderContainer']")
     SLIDER = (By.XPATH, "//*[@id='sliderContainer']/descendant::input[@type='range']")
     SLIDER_INPUT_VALUE = (By.XPATH, "//*[@id='sliderValue']")
     PROGRESS_BAR_SECTION = (By.XPATH, "//*[contains(@class, 'active')]/following::li")
 
     def __init__(self) -> None:
-        unique_element = (By.XPATH, "//*[@id='sliderContainer']")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.slider = Input(self.SLIDER, "Slider")
         self.slider_input_value = Input(self.SLIDER_INPUT_VALUE, "Slider input value")
         self.progress_bar_section = Button(self.PROGRESS_BAR_SECTION, "Progress bar section")

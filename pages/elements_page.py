@@ -5,12 +5,12 @@ from elements.button import Button
 from selenium.webdriver.common.by import By
 
 class ElementsPage(BasePage):
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(text(), 'Elements')]//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
     WEB_TABLES_SECTION = (By.ID, "item-3")
     UPLOAD_AND_DOWNLOAD_SECTION = (By.ID, "item-7")
 
     def __init__(self) -> None:
-        unique_element = (By.XPATH, "//*[contains(text(), 'Elements')]//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.web_tables_section = Button(self.WEB_TABLES_SECTION, "Web Tables Section")
         self.upload_and_download_section = Button(self.UPLOAD_AND_DOWNLOAD_SECTION, "Upload and download files section")
 

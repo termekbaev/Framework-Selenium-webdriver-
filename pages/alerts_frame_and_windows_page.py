@@ -7,14 +7,14 @@ from elements.button import Button
 from selenium.webdriver.common.by import By
 
 class AlertsFrameAndWindowsPage(BasePage):
+    UNIQUE_ELEMENT = (By.XPATH, "//*[contains(text(), 'Alerts, Frame & Windows')]//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
     ALERTS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-1']")
     NESTED_FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-3']")
     FRAMES_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-2']")
     BROWSER_WINDOWS_SECTION = (By.XPATH, "//*[contains(@class, 'show')]//*[@id='item-0']")
 
     def __init__(self) -> None:
-        unique_element = (By.XPATH, "//*[contains(text(), 'Alerts, Frame & Windows')]//ancestor::*[@class='group-header']/following-sibling::*[contains(@class, 'show')]")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.alerts_section = Button(self.ALERTS_SECTION, "Alerts Section")
         self.nested_frames_section = Button(self.NESTED_FRAMES_SECTION, "Nested Frames Section")
         self.frames_section = Button(self.FRAMES_SECTION, "Frames Section")

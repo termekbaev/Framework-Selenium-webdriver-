@@ -8,14 +8,14 @@ import logging
 import time
 
 class UploadAndDownloadPage(BasePage):
+    DOWNLOAD_BUTTON = (By.ID, "downloadButton")
     FILE_INPUT = (By.CSS_SELECTOR, "input[type='file']")
     UPLOADED_FILE_PATH = (By.ID, "uploadedFilePath")
 
     def __init__(self) -> None:
-        unique_element = (By.ID, "downloadButton")
-        super().__init__(unique_element)
+        super().__init__(unique_element_locator=self.DOWNLOAD_BUTTON)
         self.logger = logging.getLogger(__name__)
-        self.download_button = Button(unique_element, "Download button")
+        self.download_button = Button(self.DOWNLOAD_BUTTON, "Download button")
         self.file_input = Input(self.FILE_INPUT, "File input")
         self.uploaded_file_path = Label(self.UPLOADED_FILE_PATH, "Uploaded file path")
 

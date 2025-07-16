@@ -6,13 +6,13 @@ from elements.button import Button
 from selenium.webdriver.common.by import By
 
 class MainPage(BasePage):
+    UNIQUE_ELEMENT = (By.CLASS_NAME, "home-content")
     ALERTS_FRAME_AND_WINDOWS_CARD = (By.XPATH, "//*[@fill-rule='evenodd']/following::h5")
     ELEMENTS_CARD = (By.XPATH, "//*[contains(@class, 'top-card')]")
     WIDGETS_CARD = (By.XPATH, "//*[@fill-rule='evenodd']/following::h5/following::h5")
 
     def __init__(self) -> None:
-        unique_element = (By.CLASS_NAME, "home-content")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.alerts_frame_card = Button(self.ALERTS_FRAME_AND_WINDOWS_CARD, "Alerts, Frame & Windows Card")
         self.elements_card = Button(self.ELEMENTS_CARD, "Elements Card")
         self.widgets_card = Button(self.WIDGETS_CARD, "Widgets Card")

@@ -5,12 +5,12 @@ from elements.base_element import BaseElement
 import logging
 
 class ProgressBarPage(BasePage):
+    UNIQUE_ELEMENT = (By.ID, "progressBarContainer")
     START_AND_STOP_BUTTON = (By.ID, "startStopButton")
     PROGRESS_BAR = (By.XPATH, "//*[@role='progressbar']")
 
     def __init__(self) -> None:
-        unique_element = (By.ID, "progressBarContainer")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.start_and_stop_button = Button(self.START_AND_STOP_BUTTON, "Start/stop button")
         self.progress_bar = BaseElement(self.PROGRESS_BAR, "Progress bar")
         self.logger = logging.getLogger(__name__)
