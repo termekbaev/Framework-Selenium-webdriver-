@@ -12,15 +12,15 @@ class DatePickerPage(BasePage):
             needed_year += 1
         return needed_year
     
+    UNIQUE_ELEMENT = (By.ID, "datePickerContainer")
     DATE_PICKER_MONTH_YEAR_INPUT = (By.ID, "datePickerMonthYearInput")
     DATE_PICKER_DATE_AND_TIME_INPUT = (By.ID, "dateAndTimePickerInput")
     NEEDED_YEAR = (By.XPATH, f"//*[@class='react-datepicker__year-select']/option[@value='{get_needed_year()}']")
     NEEDED_MONTH = (By.XPATH, "//*[@class='react-datepicker__month-select']/option[@value='1']")
     NEEDED_DAY = (By.XPATH, "//*[@class='react-datepicker__day react-datepicker__day--029']")
 
-    def __init__(self):
-        unique_element = (By.ID, "datePickerContainer")
-        super().__init__(unique_element)
+    def __init__(self) -> None:
+        super().__init__(self.UNIQUE_ELEMENT)
         self.date_picker_month_year_input = Input(self.DATE_PICKER_MONTH_YEAR_INPUT, "Date, month and year input")
         self.date_picker_date_and_time_input = Input(self.DATE_PICKER_DATE_AND_TIME_INPUT, "Date and time input")
         self.needed_year = Button(self.NEEDED_YEAR, "Needed year")

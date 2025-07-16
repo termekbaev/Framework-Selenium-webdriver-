@@ -4,12 +4,19 @@
   "chrome_options": {
     "arguments": [
       "--headless=new",
+      "--disable-gpu",
+      "--no-sandbox",
       "--incognito",
       "--disable-extensions",
       "--lang=en",
       "--window-size=1920,1080"
     ],
-    "page_load_strategy": "eager"
+    "page_load_strategy": "eager",
+    "prefs": {
+      "download.prompt_for_download": false,
+      "download.directory_upgrade": true,
+      "safebrowsing.enabled": true
+    }
   },
   "firefox_options": {
     "arguments": [
@@ -18,7 +25,11 @@
       "--disable-extensions"
     ],
     "preferences": {
-      "intl.accept_languages": "en"
+      "intl.accept_languages": "en",
+      "browser.download.folderList": 2,
+      "browser.download.manager.showWhenStarting": false,
+      "browser.download.dir": "C:/Users/t-erm/Downloads",
+      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream,application/pdf"
     },
     "page_load_strategy": "eager",
     "window_size": "1920,1080"

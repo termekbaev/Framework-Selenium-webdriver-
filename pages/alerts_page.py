@@ -5,6 +5,7 @@ from elements.label import Label
 import logging
 
 class AlertsPage(BasePage):
+    UNIQUE_ELEMENT = (By.ID, "javascriptAlertsWrapper")
     ALERT_BUTTON = (By.ID, "alertButton")
     CONFIRM_BUTTON = (By.ID, "confirmButton")
     PROMPT_BUTTON = (By.ID, "promtButton")
@@ -12,8 +13,7 @@ class AlertsPage(BasePage):
     PROMPT_RESULT = (By.ID, "promptResult")
 
     def __init__(self) -> None:
-        unique_element = (By.ID, "javascriptAlertsWrapper")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.alert_button = Button(self.ALERT_BUTTON, "Alert Button")
         self.confirm_button = Button(self.CONFIRM_BUTTON, "Confirm Button")
         self.prompt_button = Button(self.PROMPT_BUTTON, "Prompt Button")

@@ -8,13 +8,13 @@ from selenium.webdriver.common.action_chains import ActionChains
 import logging
 
 class SliderPage(BasePage):
+    UNIQUE_ELEMENT = (By.XPATH, "//*[@id='sliderContainer']")
     SLIDER = (By.XPATH, "//*[@id='sliderContainer']/descendant::input[@type='range']")
     SLIDER_INPUT_VALUE = (By.XPATH, "//*[@id='sliderValue']")
     PROGRESS_BAR_SECTION = (By.XPATH, "//*[contains(@class, 'active')]/following::li")
 
     def __init__(self) -> None:
-        unique_element = (By.XPATH, "//*[@id='sliderContainer']")
-        super().__init__(unique_element)
+        super().__init__(self.UNIQUE_ELEMENT)
         self.slider = Input(self.SLIDER, "Slider")
         self.slider_input_value = Input(self.SLIDER_INPUT_VALUE, "Slider input value")
         self.progress_bar_section = Button(self.PROGRESS_BAR_SECTION, "Progress bar section")
@@ -23,7 +23,7 @@ class SliderPage(BasePage):
     def move_slider_to_value(self, value: int) -> None:
         slider_width = self.slider.find_element().size["width"]
         action = ActionChains(DriverManager().driver)
-        for offset in range(int((value / 100) * slider_width - slider_width / 2 - slider_width // 100), slider_width + 1, slider_width // 100):
+        for offset in range(int(value / 100 * slider_width - slider_width / 2 - slider_width / 100), int(slider_width + 1), int(slider_width // 100)):
             action.click_and_hold(self.slider.find_element()).move_by_offset(offset, 0).release().perform()
             if int(self.slider.get_attribute("value")) == value:
                 self.logger.info(f"Moved slider to value {value}")

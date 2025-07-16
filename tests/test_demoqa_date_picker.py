@@ -1,13 +1,14 @@
 from pages.main_page import MainPage
 from utils.browser.values_generator import ValuesGenerator
-from datetime import date
+from utils.config.data_reader import DataReader
 import logging
 
 logger = logging.getLogger(__name__)
 
-def test_date_picker() -> None:
+def test_date_picker(date_picker_test_data: DataReader) -> None:
     logger.info(f"Starting test Demoqa Date Picker")
     try:
+        test_data = date_picker_test_data.get_date_picker_data()
         main_page = MainPage()
         assert main_page.is_opened(), "Main page not opened"
         
@@ -28,8 +29,8 @@ def test_date_picker() -> None:
         date_picker_page.select_next_29_february()
         assert value_generator.generate_datetime_string_in_format(
                     year=date_picker_page.get_needed_year(), 
-                    month=2, 
-                    day=29, 
+                    month=test_data["needed_month"], 
+                    day=test_data["needed_day"], 
                     format_string="%m/%d/%Y") == \
             date_picker_page.get_date_input_data(), \
             "Dates not matched"

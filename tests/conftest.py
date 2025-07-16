@@ -9,11 +9,9 @@ import logging
 
 @pytest.fixture(autouse=True)
 def setup_driver(config: ConfigReader, setup_logging) -> Generator[None, None, None]:
-    driver_manager = DriverManager(config)
-    driver = driver_manager.driver
-    driver.get(config.app_config.main_url)
+    DriverManager(config).driver.get(config.app_config.main_url)
     yield
-    driver_manager.quit()
+    DriverManager(config).quit()
 
 @pytest.fixture
 def config() -> ConfigReader:
@@ -30,6 +28,10 @@ def frames_test_data() -> DataReader:
 @pytest.fixture
 def progress_bar_test_data() -> DataReader:
     return DataReader("test_data/progress_bar.json")
+
+@pytest.fixture
+def date_picker_test_data() -> DataReader:
+    return DataReader("test_data/date_picker_data.json")
 
 @pytest.fixture(autouse=True)
 def setup_logging(request: pytest.FixtureRequest) -> Generator[logging.Logger, None, None]:
