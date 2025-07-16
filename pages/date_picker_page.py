@@ -18,7 +18,7 @@ class DatePickerPage(BasePage):
     NEEDED_MONTH = (By.XPATH, "//*[@class='react-datepicker__month-select']/option[@value='1']")
     NEEDED_DAY = (By.XPATH, "//*[@class='react-datepicker__day react-datepicker__day--029']")
 
-    def __init__(self):
+    def __init__(self) -> None:
         unique_element = (By.ID, "datePickerContainer")
         super().__init__(unique_element)
         self.date_picker_month_year_input = Input(self.DATE_PICKER_MONTH_YEAR_INPUT, "Date, month and year input")

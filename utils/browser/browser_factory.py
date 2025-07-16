@@ -2,6 +2,7 @@ from selenium import webdriver
 from utils.config.config_reader import ConfigReader
 from typing import Union
 import logging
+import os
 
 class BrowserFactory:
     def __init__(self, config: ConfigReader) -> None:
@@ -22,11 +23,18 @@ class BrowserFactory:
         try:
             options = webdriver.ChromeOptions()
             cfg = self._config.app_config.chrome_options
+            test_name = os.environ.get('PYTEST_CURRENT_TEST')
+
+            if "test_demoqa_files_uploading_and_downloading.py" in test_name:
+                cfg.arguments.remove("--incognito")
+                cfg.prefs["download.default_directory"] = r"C:\Users\t-erm\Downloads"
+                options.add_experimental_option('prefs', cfg.prefs)
+
             for arg in cfg.arguments:
                 options.add_argument(arg)
             options.page_load_strategy = cfg.page_load_strategy
 
-            self.logger.info(f"With options = {cfg.arguments}")
+            self.logger.info(f"With options = {cfg.__dict__}")
 
             driver = webdriver.Chrome(options=options)
             if "--headless=new" not in cfg.arguments:
@@ -41,8 +49,14 @@ class BrowserFactory:
         try:
             options = webdriver.FirefoxOptions()
             cfg = self._config.app_config.firefox_options
+            test_name = os.environ.get('PYTEST_CURRENT_TEST')
+
+            if "test_demoqa_files_uploading_and_downloading.py" in test_name:
+                cfg.arguments.remove("--private")
+
             for arg in cfg.arguments:
                 options.add_argument(arg)
+                
             for pref, value in cfg.preferences.items():
                 options.set_preference(pref, value)
             options.page_load_strategy = cfg.page_load_strategy
